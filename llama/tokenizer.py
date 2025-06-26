@@ -71,7 +71,7 @@ class ViTokenizer:
     
 tokenizer = ViTokenizer({})
 tokenizer.build_vocab(raw_data)
-# tokenizer.save_vocab('../data/UIT-VSFC/vocab.json')
+# tokenizer.save_vocab('../data/UIT-VSFC/llama_vocab.json')
 
 # print("Build vocab thành công")
 # print("Số lượng từ trong vocab:", tokenizer.vocab_size)

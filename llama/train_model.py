@@ -136,7 +136,7 @@ def main():
     print(f"Using device: {device}")
 
     tokenizer = ViTokenizer({})
-    tokenizer.load_vocab('../data/UIT-VSFC/vocab.json')
+    tokenizer.load_vocab('../data/UIT-VSFC/llama_vocab.json')
 
     train_dataset = SentimentDataset(
         data_path='../data/UIT-VSFC/merge_data/train_data.csv',
