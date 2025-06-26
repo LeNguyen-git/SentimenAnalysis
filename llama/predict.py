@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 from model import MiniLlamaModel, ModelArgs
-from tokenizer import ViTokenizer
+from tokenizer import LLaMaTokenizer
 import preprocessing
 
 def predict(model, tokenizer, text, device, max_length=128):
@@ -44,7 +44,7 @@ def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Sử dụng thiết bị: {device}")
 
-    tokenizer = ViTokenizer({})
+    tokenizer = LLaMaTokenizer({})
     tokenizer.load_vocab('../data/UIT-VSFC/vocab.json')
 
     model_args = ModelArgs(

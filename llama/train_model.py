@@ -13,8 +13,8 @@ from torch.optim.lr_scheduler import CosineAnnealingLR
 
 #Import thư viên cần thiết của mô hình MiniLLama
 from model import MiniLlamaModel, ModelArgs
-from dataset import SentimentDataset, create_dataloader
-from tokenizer import ViTokenizer
+from dataset import LLamaDataset, create_dataloader
+from tokenizer import LLaMaTokenizer
 import preprocessing
 
 def train(model, train_loader, optimizer, device):
@@ -135,16 +135,16 @@ def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
 
-    tokenizer = ViTokenizer({})
+    tokenizer = LLaMaTokenizer({})
     tokenizer.load_vocab('../data/UIT-VSFC/llama_vocab.json')
 
-    train_dataset = SentimentDataset(
+    train_dataset = LLamaDataset(
         data_path='../data/UIT-VSFC/merge_data/train_data.csv',
         tokenizer=tokenizer,
         max_length=128
     )
 
-    val_dataset = SentimentDataset(
+    val_dataset = LLamaDataset(
         data_path='../data/UIT-VSFC/merge_data/dev_data.csv',
         tokenizer=tokenizer,
         max_length=128

@@ -11,7 +11,7 @@ with open('../data/UIT-VSFC/merge_data/all_text.txt', 'r', encoding='utf-8') as 
 raw_data = [preprocessing.preprocess_text(text) for text in raw_data]
 
 
-class ViTokenizer:
+class LLaMaTokenizer:
     def __init__(self, vocab):
         self.str_to_int = vocab
         self.int_to_str = {v: k for k, v in vocab.items()}
@@ -69,7 +69,7 @@ class ViTokenizer:
         self.int_to_str = {int(idx) : token for token, idx in vocab.items()}
         self.vocab_size = len(vocab)
     
-tokenizer = ViTokenizer({})
+tokenizer = LLaMaTokenizer({})
 tokenizer.build_vocab(raw_data)
 # tokenizer.save_vocab('../data/UIT-VSFC/llama_vocab.json')
 

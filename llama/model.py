@@ -4,7 +4,7 @@ import torch.nn.functional as F
 import json
 import math
 
-with open("../data/UIT-VSFC/vocab.json", "r", encoding="utf-8") as f:
+with open("../data/UIT-VSFC/llama_vocab.json", "r", encoding="utf-8") as f:
     vocab = json.load(f)
 
 vocab_size = len(vocab)

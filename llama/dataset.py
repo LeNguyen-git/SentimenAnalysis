@@ -4,11 +4,11 @@ import os
 import torch
 import pandas as pd
 import numpy as np
-from tokenizer import ViTokenizer
+from tokenizer import LLaMaTokenizer
 import preprocessing
 
 
-class SentimentDataset(Dataset):
+class LLamaDataset(Dataset):
     def __init__(self, data_path, tokenizer, max_length=128):
         self.data = pd.read_csv(data_path, encoding='utf-8')
         self.tokenizer = tokenizer
@@ -47,13 +47,13 @@ def create_dataloader(dataset, batch_size=8, shuffle=True, num_workers=0):
             batch_size=batch_size,
             shuffle=shuffle,
             num_workers=num_workers,
-            # pin_memory=True if torch.cuda.is_available() else False
+            pin_memory=True if torch.cuda.is_available() else False
         )
 
 
     
 # if __name__ == "__main__":
-#     tokenizer = ViTokenizer({})
+#     tokenizer = LLaMaTokenizer({})
 #     tokenizer.load_vocab('../data/UIT-VSFC/vocab.json')
 
 #     train_dataset = SentimentDataset(

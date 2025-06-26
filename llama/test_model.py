@@ -8,8 +8,8 @@ from tqdm import tqdm
 import matplotlib.pyplot as plt
 import seaborn as sns
 from model import MiniLlamaModel, ModelArgs
-from dataset import SentimentDataset, create_dataloader
-from tokenizer import ViTokenizer
+from dataset import LLamaDataset, create_dataloader
+from tokenizer import LLaMaTokenizer
 
 def test(model, test_loader, device, num_classes=3):
     model.eval()
@@ -64,10 +64,10 @@ def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
 
-    tokenizer = ViTokenizer({})
+    tokenizer = LLaMaTokenizer({})
     tokenizer.load_vocab('../data/UIT-VSFC/vocab.json')
 
-    test_dataset = SentimentDataset(
+    test_dataset = LLamaDataset(
         data_path='../data/UIT-VSFC/merge_data/test_data.csv',
         tokenizer=tokenizer,
         max_length=128
