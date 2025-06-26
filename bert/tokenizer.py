@@ -4,8 +4,8 @@ import re
 from collections import defaultdict
 from preprocessing import TextPreprocessor
 
-class ViTokenizer:
-    def __init__(self, vocab_size=None,  min_frequency=1):
+class BertTokenizer:
+    def __init__(self, vocab_size=None,  min_frequency=None):
         self.vocab_size = vocab_size
         self.min_frequency = min_frequency
         self.vocab = {}
@@ -31,18 +31,6 @@ class ViTokenizer:
                 pair = (symbols[i], symbols[i + 1])
                 word_freq[pair] += freq
         return word_freq
-    
-    # def merge_vocab(self, word_freq, corpus):
-
-    #     new_char = re.escape(' '.join(word_freq))
-    #     new_char = re.compile(r'(?<!\S)' + new_char + r'(?!\S)')
-
-    #     new_vocab = defaultdict(int)
-
-    #     for words in corpus:
-    #         new_words = new_char.sub(''.join(word_freq), words)
-    #         new_vocab[new_words] += corpus[words]
-    #     return new_vocab
 
     def merge_vocab(self, word_freq, corpus):
         bigram = ' '.join(word_freq)
@@ -109,22 +97,6 @@ class ViTokenizer:
         # self.subwords = set(vocab.keys()) - set(self.special_tokens.keys())
         self.subwords = set(vocab.keys())
         self.id_to_token = {v: k for k, v in self.vocab.items()}
-
-    # def tokenize_word(self, word):
-    #     if not word:
-    #         return []
-        
-    #     if word in self.vocab: 
-    #         return [word]
-        
-    #     chars = list(word) + ['</w>']  
-    #     word_str = ' '.join(chars)
-    #     for pair in self.merges:  
-    #         bigram = re.escape(' '.join(pair))
-    #         pattern = re.compile(r'(?<!\S)' + bigram + r'(?!\S)')
-    #         word_str = pattern.sub(''.join(pair), word_str)
-    #     tokens = word_str.split()
-    #     return [token if token in self.vocab else '[UNK]' for token in tokens]
 
     def tokenize_word(self, word):
         if not word:
@@ -201,7 +173,7 @@ if __name__ == "__main__":
     processor = TextPreprocessor()
     texts = [processor.preprocess_text(text) for text in texts]
 
-    tokenizer = ViTokenizer(min_frequency=1)
+    tokenizer = BertTokenizer(min_frequency=1)
     tokenizer.build_vocab(texts)
 
     # print(f"Số lượng token trong vocab: {len(tokenizer.vocab)}")
