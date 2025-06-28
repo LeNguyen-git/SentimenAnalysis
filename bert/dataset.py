@@ -30,12 +30,12 @@ class BertDataset(Dataset):
             token_ids.extend([0] * (self.max_length - len(token_ids)))
 
         attention_mask = [1 if token_id != 0 else 0 for token_id in token_ids]
-        # token_type_ids = [0] * self.max_length
+        token_type_ids = [0] * self.max_length
 
         return {
             'input_ids': torch.tensor(token_ids, dtype=torch.long),
             'attention_mask': torch.tensor(attention_mask, dtype=torch.long),
-            # 'token_type_ids': torch.tensor(token_type_ids, dtype=torch.long),
+            'token_type_ids': torch.tensor(token_type_ids, dtype=torch.long),
             'labels': torch.tensor(label, dtype=torch.long)
         }
 
@@ -47,7 +47,7 @@ def create_data_loader(dataset, batch_size=8, shuffle=True, num_workers=0):
             num_workers=num_workers,
             pin_memory=True if torch.cuda.is_available() else False
         )
-    
+
 # if __name__ == "__main__":
 
 #     tokenizer = BertTokenizer(min_frequency=1)
