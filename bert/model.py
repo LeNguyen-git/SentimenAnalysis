@@ -4,6 +4,11 @@ import torch.nn.functional as F
 import json
 import math
 
+with open("../data/UIT-VSFC/bert_vocab.json", "r", encoding="utf-8") as f:
+    vocab = json.load(f)
+
+vocab_size = len(vocab)
+
 class ManualEmbedding(nn.Module):
     def __init__(self, vocab_size, d_model):
         super().__init__()
@@ -226,15 +231,22 @@ class BertModel(nn.Module):
             nn.init.zeros_(self.classifier.bias)
         self.dropout = nn.Dropout(args.dropout)
 
-    def forward(self, input_ids, token_type_ids=None, attention_mask=None):
-        
+    def forward(self, input_ids, token_type_ids=None, attention_mask=None, labels=None):
         embeddings = self.embedding(input_ids, token_type_ids)
         encoder_output = self.encoder(embeddings, attention_mask)
         pooled_output = self.pooler(encoder_output)
 
-        if self.num_classes is not None:
+        if self.num_labels is not None:
             pooled_output = self.dropout(pooled_output)
             logits = self.classifier(pooled_output)
-            return logits
+
+            if labels is not None:
+                loss_fn = nn.CrossEntropyLoss()
+                loss = loss_fn(logits, labels)
+                return {"loss": loss, "logits": logits}
+            return {"logits": logits}
+
         return encoder_output, pooled_output
+    
+
 
