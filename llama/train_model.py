@@ -105,7 +105,7 @@ def load_checkpoint(model, optimizer, path):
 
     return start_epoch
 
-def trainning_history(train_loss, train_acc, train_f1, val_loss, val_acc, val_f1, epoch, history_file):
+def training_history(train_loss, train_acc, train_f1, val_loss, val_acc, val_f1, epoch, history_file):
     history = {
         'epoch': epoch + 1,
         'train_loss': train_loss,
@@ -164,7 +164,7 @@ def main():
     )
 
    
-    num_epochs = 5
+    num_epochs = 3
     checkpoint_path = 'checkpoints/model_2.pth'
     history_file = 'training_history/training_history_2.json'
 
@@ -185,7 +185,7 @@ def main():
 
         save_checkpoint(model, optimizer, epoch, checkpoint_path)
 
-        trainning_history(train_loss, train_accuracy, train_f1, val_loss, val_acc, val_f1, epoch, history_file)
+        training_history(train_loss, train_accuracy, train_f1, val_loss, val_acc, val_f1, epoch, history_file)
         
 
 if __name__ == "__main__":
