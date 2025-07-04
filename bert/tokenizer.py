@@ -220,6 +220,7 @@ class BertTokenizer:
             
             self.id_to_token = {v: k for k, v in self.vocab.items()}
             self.subwords = set(self.vocab.keys())
+            self.vocab_size = len(self.vocab)
 
 
 if __name__ == "__main__":
