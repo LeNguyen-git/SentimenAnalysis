@@ -25,6 +25,9 @@ class TextPreprocessor:
         text = text.lower()
         text = self.remove_punctuation(text)
         text = self.remove_special_characters(text)
+        text = self.normalize_unicode(text)
+        text = text.strip()
+        
         return text
 
 
