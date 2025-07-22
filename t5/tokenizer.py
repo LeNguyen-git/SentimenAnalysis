@@ -106,7 +106,7 @@ class T5Tokenizer:
         return scores
 
 
-    def train(self, texts):
+    def build_vocab(self, texts):
         self.freq = self.get_initial_vocab(texts)
         total_count = sum(self.freq.values())
 
@@ -137,7 +137,9 @@ class T5Tokenizer:
 
     def decode(self, token_ids):
         tokens = [self.id_to_token.get(id_, "<unk>") for id_ in token_ids]
-        tokens = [i for i in tokens if i not in {"<s>","</s>","<pad>"}]
+
+        # tokens = [i for i in tokens if i not in {"<s>","</s>","<pad>"}]
+        tokens = [i for i in tokens if i != "<pad>"]
 
         text = " ".join(tokens).strip()
 
@@ -174,7 +176,7 @@ if __name__ == "__main__":
     texts = [processor.preprocess_text(text) for text in texts]
 
     tokenizer = T5Tokenizer()
-    tokenizer.train(texts)
+    tokenizer.build_vocab(texts)
 
     # print("-"*80)
 
