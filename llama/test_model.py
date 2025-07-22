@@ -65,7 +65,7 @@ def main():
     print(f"Using device: {device}")
 
     tokenizer = LLaMaTokenizer({})
-    tokenizer.load_vocab('../data/UIT-VSFC/vocab.json')
+    tokenizer.load_vocab('../data/UIT-VSFC/llama_vocab.json')
 
     test_dataset = LLamaDataset(
         data_path='../data/UIT-VSFC/merge_data/test_data.csv',
@@ -76,7 +76,7 @@ def main():
 
     model_args = ModelArgs(
         vocab_size=tokenizer.vocab_size,
-        hidden_dim=256,
+        hidden_dim=512,
         d_model=256,
         n_layers=6,
         n_heads=8,
@@ -84,7 +84,7 @@ def main():
         num_classes=3
     )
 
-    checkpoint_path = 'checkpoints/model_2.pth'
+    checkpoint_path = 'checkpoints/model_3.pth'
     model = load_model(checkpoint_path, device, model_args)
 
     accuracy, precision, recall, f1, roc_auc, cm = test(model, test_loader, device, num_classes=3)

@@ -155,7 +155,7 @@ def main():
 
     model_args = ModelArgs(
         vocab_size=tokenizer.vocab_size,
-        hidden_dim=256,
+        hidden_dim=512,
         d_model=256,
         n_layers=6,
         n_heads=8,
@@ -165,8 +165,8 @@ def main():
 
    
     num_epochs = 3
-    checkpoint_path = 'checkpoints/model_2.pth'
-    history_file = 'training_history/training_history_2.json'
+    checkpoint_path = 'checkpoints/model_3.pth'
+    history_file = 'training_history/training_history_3.json'
 
     model = MiniLlamaModel(model_args).to(device)
     optimizer = optim.AdamW(model.parameters(), lr=5e-4, weight_decay=1e-2)
