@@ -160,16 +160,17 @@ def main():
         n_layers=6,
         n_heads=8,
         max_seq_len=128,
-        num_classes=3
+        num_classes=3,
+        num_groups=4
     )
 
    
     num_epochs = 3
-    checkpoint_path = 'checkpoints/model_3.pth'
-    history_file = 'training_history/training_history_3.json'
+    checkpoint_path = 'checkpoints/model_4.pth'
+    history_file = 'training_history/training_history_4.json'
 
     model = MiniLlamaModel(model_args).to(device)
-    optimizer = optim.AdamW(model.parameters(), lr=5e-4, weight_decay=1e-2)
+    optimizer = optim.AdamW(model.parameters(), lr=1e-4, weight_decay=1e-2)
     # scheduler = CosineAnnealingLR(optimizer, T_max=num_epochs)
 
     for epoch in range(num_epochs):

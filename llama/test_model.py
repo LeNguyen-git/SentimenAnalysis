@@ -43,7 +43,15 @@ def test(model, test_loader, device, num_classes=3):
 
     cm = confusion_matrix(all_labels, all_preds, labels=range(num_classes))
 
-    return accuracy, precision, recall, f1, roc_auc, cm
+    #Tính cho từng lớp
+    precision_per_class = precision_score(all_labels, all_preds, average=None, zero_division=0)
+    recall_per_class = recall_score(all_labels, all_preds, average=None, zero_division=0)
+    f1_per_class = f1_score(all_labels, all_preds, average=None, zero_division=0)
+
+    return (
+        accuracy, precision, recall, f1, roc_auc, cm,
+        precision_per_class, recall_per_class, f1_per_class
+    )
 
 def load_model(checkpoint_path, device, model_args):
     model = MiniLlamaModel(model_args).to(device)
@@ -81,19 +89,31 @@ def main():
         n_layers=6,
         n_heads=8,
         max_seq_len=128,
-        num_classes=3
+        num_classes=3,
+        num_groups=4
     )
 
-    checkpoint_path = 'checkpoints/model_3.pth'
+    checkpoint_path = 'checkpoints/model_4.pth'
     model = load_model(checkpoint_path, device, model_args)
 
-    accuracy, precision, recall, f1, roc_auc, cm = test(model, test_loader, device, num_classes=3)
+    (
+        accuracy, precision, recall, f1, roc_auc, cm,
+        precision_per_class, recall_per_class, f1_per_class
+    ) = test(model, test_loader, device, num_classes=3)
 
     print(f"Test Accuracy: {accuracy:.4f}")
     print(f"Test Precision: {precision:.4f}")
     print(f"Test Recall: {recall:.4f}")
     print(f"Test F1 Score: {f1:.4f}")
     print(f"Test ROC-AUC Score: {roc_auc:.4f}")
+
+    print(f"\n📌 Kết quả từng lớp:")
+    class_labels = ['Tiêu cực', 'Trung tính', 'Tích cực']
+    for i, label in enumerate(class_labels):
+        print(f"Lớp {label}:")
+        print(f"  - Precision: {precision_per_class[i]:.4f}")
+        print(f"  - Recall:    {recall_per_class[i]:.4f}")
+        print(f"  - F1-score:  {f1_per_class[i]:.4f}")
 
     plot_confusion_matrix(cm, labels=['Tiêu cực (0)', 'Trung tính (1)', 'Tích cực (2)'])
 

@@ -64,13 +64,60 @@ class RotaryPositionEmbedding(nn.Module):
         return x_rope
 
 
-class MultiHeadSelfAttention(nn.Module):
-    def __init__(self, d_model, n_heads, max_len=1024):
+# class MultiHeadSelfAttention(nn.Module):
+#     def __init__(self, d_model, n_heads, max_len=1024):
+#         super().__init__()
+#         assert d_model % n_heads == 0
+
+#         self.d_model = d_model
+#         self.n_heads = n_heads
+#         self.head_dim = d_model // n_heads
+
+#         self.q_proj = nn.Linear(d_model, d_model, bias=False)
+#         self.k_proj = nn.Linear(d_model, d_model, bias=False)
+#         self.v_proj = nn.Linear(d_model, d_model, bias=False)
+
+#         self.rope = RotaryPositionEmbedding(self.head_dim, max_len)
+
+#     def forward(self, x: torch.Tensor, attention_mask=None):
+#         batch_size, seq_len, d_model = x.shape
+
+#         q = self.q_proj(x).view(batch_size, seq_len, self.n_heads, self.head_dim)
+#         k = self.k_proj(x).view(batch_size, seq_len, self.n_heads, self.head_dim)
+#         v = self.v_proj(x).view(batch_size, seq_len, self.n_heads, self.head_dim)
+
+#         q = self.rope(q, seq_len)
+#         k = self.rope(k, seq_len)
+
+#         q = q.transpose(1, 2)  # (batch_size, n_heads, seq_len, head_dim)
+#         k = k.transpose(1, 2)
+#         v = v.transpose(1, 2)
+
+#         attention_scores = torch.matmul(q, k.transpose(-2, -1)) / math.sqrt(self.head_dim)
+#         # causal_mask = torch.triu(torch.ones(seq_len, seq_len), diagonal=1).bool().to(x.device)
+#         # attention_scores = attention_scores.masked_fill(causal_mask, float('-inf'))
+
+#         if attention_mask is not None:
+#             attention_mask = attention_mask.unsqueeze(1).unsqueeze(2)
+#             attention_scores = attention_scores.masked_fill(attention_mask == 0, float('-inf'))
+
+#         attention_weights = torch.softmax(attention_scores, dim=-1)
+
+#         attention_output = torch.matmul(attention_weights, v)
+#         attention_output = attention_output.transpose(1, 2).contiguous().view(batch_size, seq_len, d_model)
+
+#         return attention_output
+
+class GroupedSelfAttention(nn.Module):
+    def __init__(self, d_model, n_heads, num_groups, max_len=1024):
         super().__init__()
         assert d_model % n_heads == 0
+        assert n_heads % num_groups == 0, "n_heads phải chia hết cho num_groups"
 
         self.d_model = d_model
         self.n_heads = n_heads
+        self.num_groups = num_groups
+        self.heads_per_group = n_heads // num_groups
         self.head_dim = d_model // n_heads
 
         self.q_proj = nn.Linear(d_model, d_model, bias=False)
@@ -80,7 +127,7 @@ class MultiHeadSelfAttention(nn.Module):
         self.rope = RotaryPositionEmbedding(self.head_dim, max_len)
 
     def forward(self, x: torch.Tensor, attention_mask=None):
-        batch_size, seq_len, d_model = x.shape
+        batch_size, seq_len, _ = x.shape
 
         q = self.q_proj(x).view(batch_size, seq_len, self.n_heads, self.head_dim)
         k = self.k_proj(x).view(batch_size, seq_len, self.n_heads, self.head_dim)
@@ -93,20 +140,29 @@ class MultiHeadSelfAttention(nn.Module):
         k = k.transpose(1, 2)
         v = v.transpose(1, 2)
 
-        attention_scores = torch.matmul(q, k.transpose(-2, -1)) / math.sqrt(self.head_dim)
-        # causal_mask = torch.triu(torch.ones(seq_len, seq_len), diagonal=1).bool().to(x.device)
-        # attention_scores = attention_scores.masked_fill(causal_mask, float('-inf'))
+        outputs = []
+        for g in range(self.num_groups):
+            start = g * self.heads_per_group
+            end = start + self.heads_per_group
 
-        if attention_mask is not None:
-            attention_mask = attention_mask.unsqueeze(1).unsqueeze(2)
-            attention_scores = attention_scores.masked_fill(attention_mask == 0, float('-inf'))
+            q_g = q[:, start:end]  # (batch, group_heads, seq_len, dim)
+            k_g = k[:, start:end]
+            v_g = v[:, start:end]
 
-        attention_weights = torch.softmax(attention_scores, dim=-1)
+            scores = torch.matmul(q_g, k_g.transpose(-2, -1)) / math.sqrt(self.head_dim)
 
-        attention_output = torch.matmul(attention_weights, v)
-        attention_output = attention_output.transpose(1, 2).contiguous().view(batch_size, seq_len, d_model)
+            if attention_mask is not None:
+                mask = attention_mask.unsqueeze(1).unsqueeze(2)
+                scores = scores.masked_fill(mask == 0, float('-inf'))
 
-        return attention_output
+            attn = torch.softmax(scores, dim=-1)
+            out = torch.matmul(attn, v_g)
+            outputs.append(out)
+
+        output = torch.cat(outputs, dim=1)
+        output = output.transpose(1, 2).contiguous().view(batch_size, seq_len, self.d_model)
+        return output
+
 
 
 class RMSNorm(nn.Module):
@@ -147,11 +203,12 @@ class FeedForward(nn.Module):
         
 
 class TransformerBlock(nn.Module):
-    def __init__(self, d_model, n_heads, hidden_dim, max_len=1024):
+    def __init__(self, d_model, n_heads, hidden_dim, num_groups, max_len=1024):
         super().__init__()
 
         self.attention_norm = RMSNorm(d_model)
-        self.self_attention = MultiHeadSelfAttention(d_model, n_heads, max_len)
+        # self.self_attention = MultiHeadSelfAttention(d_model, n_heads, max_len)
+        self.self_attention = GroupedSelfAttention(d_model, n_heads, num_groups, max_len=max_len)
         self.feed_forward = FeedForward(d_model, hidden_dim)
         self.ffn_norm = RMSNorm(d_model)
 
@@ -182,6 +239,7 @@ class ModelArgs:
             hidden_dim: int = 512,
             max_seq_len: int = 256,
             num_classes: int = 3,
+            num_groups: int = 4,
             
     ):
         self.vocab_size = vocab_size
@@ -191,6 +249,7 @@ class ModelArgs:
         self.hidden_dim = hidden_dim
         self.max_seq_len = max_seq_len
         self.num_classes = num_classes
+        self.num_groups = num_groups
         
 
 class MiniLlamaModel(nn.Module):
@@ -207,7 +266,8 @@ class MiniLlamaModel(nn.Module):
                 d_model=args.d_model,
                 n_heads=args.n_heads,
                 hidden_dim=args.hidden_dim,
-                max_len=args.max_seq_len
+                num_groups=args.num_groups,
+                max_len=args.max_seq_len,
             )for _ in range(args.n_layers)
         ])
 
