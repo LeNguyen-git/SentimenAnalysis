@@ -3,6 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import json
 import math
+from t5_tokenizer import T5Tokenizer
 
 class ManualEmbedding(nn.Module):
     def __init__(self, vocab_size, d_model):
@@ -48,6 +49,7 @@ class T5Embedding(nn.Module):
         x = self.layernorm(x)                             
         x = self.dropout(x)                               
         return x
+
     
 class MultiHeadAttention(nn.Module):
     def __init__(self, d_model, num_heads, dropout=0.1):
@@ -63,29 +65,6 @@ class MultiHeadAttention(nn.Module):
         self.o_proj = nn.Linear(d_model, d_model, bias=False)
         self.dropout = nn.Dropout(dropout)
 
-    # def forward(self, query, key, value, mask=None):
-    #     batch_size, seq_len, _ = query.size()
-
-    #     Q = self.q_proj(query).view(batch_size, -1, self.num_heads, self.head_dim).transpose(1, 2)
-    #     K = self.k_proj(key).view(batch_size, -1, self.num_heads, self.head_dim).transpose(1, 2)
-    #     V = self.v_proj(value).view(batch_size, -1, self.num_heads, self.head_dim).transpose(1, 2)
-
-    #     scores = torch.matmul(Q, K.transpose(-2, -1)) / math.sqrt(self.head_dim)
-
-    #     if mask is not None:
-    #         scores = scores.masked_fill(mask == 0, float('-inf'))
-
-    #     attn_weights = F.softmax(scores, dim=-1)
-    #     attn_weights = self.dropout(attn_weights)
-
-    #     context = torch.matmul(attn_weights, V)
-
-    #     context = context.transpose(1, 2).contiguous().view(batch_size, -1, self.d_model)
-
-    #     output = self.o_proj(context)
-
-    #     return output
-
     def forward(self, query, key, value, mask=None):
         batch_size, target_len, _ = query.size()
         src_len = key.size(1)
@@ -94,9 +73,11 @@ class MultiHeadAttention(nn.Module):
         K = self.k_proj(key).view(batch_size, src_len, self.num_heads, self.head_dim).transpose(1, 2)
         V = self.v_proj(value).view(batch_size, src_len, self.num_heads, self.head_dim).transpose(1, 2)
 
-        scores = torch.matmul(Q, K.transpose(-2, -1)) / math.sqrt(self.head_dim)
+        scores = torch.matmul(Q, K.transpose(-2, -1)) / math.sqrt(self.head_dim) 
+
         if mask is not None:
-            assert mask.shape[-1] == scores.shape[-1], f"mask shape {mask.shape}, scores shape {scores.shape}"
+            if mask.dim() == 3:
+                mask = mask.unsqueeze(1) 
             scores = scores.masked_fill(mask == 0, float('-inf'))
 
         attn_weights = F.softmax(scores, dim=-1)
@@ -107,6 +88,7 @@ class MultiHeadAttention(nn.Module):
         output = self.o_proj(context)
 
         return output, attn_weights
+
     
 class PositionwiseFeedForward(nn.Module):
     def __init__(self, d_model, hidden_dim, dropout = 0.1):
@@ -164,20 +146,20 @@ class DecodeLayer(nn.Module):
         self.dropout = nn.Dropout(dropout)
     
     def forward(self, x, encoder_output, self_mask=None, cross_mask=None):
-        
-        attn_output, _ = self.self_attn(x, x, x, self_mask)
-        x = x + self.dropout(attn_output)
-        x = self.layernorm1(x)
 
-        cross_output, _ = self.cross_attn(x, encoder_output, encoder_output, cross_mask)
-        x = x + self.dropout(cross_output)
-        x = self.layernorm2(x)
+            norm_x = self.layernorm1(x)
+            attn_output, _ = self.self_attn(norm_x, norm_x, norm_x, self_mask)
+            x = x + self.dropout(attn_output)
 
-        ffn_output = self.ffn(x)
-        x = x + self.dropout(ffn_output)
-        x = self.layernorm3(x)
-        
-        return x
+            norm_x = self.layernorm2(x)
+            cross_output, _ = self.cross_attn(norm_x, encoder_output, encoder_output, cross_mask)
+            x = x + self.dropout(cross_output)
+
+            norm_x = self.layernorm3(x)
+            ffn_output = self.ffn(norm_x)
+            x = x + self.dropout(ffn_output)
+
+            return x
     
 
 class T5Encoder(nn.Module):
@@ -223,7 +205,29 @@ class T5Decoder(nn.Module):
         x = self.layernorm(x)
 
         return x
-    
+
+
+class ModelArgs:
+    def __init__(
+        self,
+        vocab_size=32128,
+        d_model=512,
+        num_heads=8,
+        num_layers=6,
+        hidden_dim=512,
+        max_len=512,
+        dropout=0.1,
+        pad_idx=0
+    ):
+        self.vocab_size = vocab_size
+        self.d_model = d_model
+        self.num_heads = num_heads
+        self.num_layers = num_layers
+        self.hidden_dim = hidden_dim
+        self.max_len = max_len
+        self.dropout = dropout
+        self.pad_idx = pad_idx
+
 class T5Model(nn.Module):
     def __init__(self, args): 
         super().__init__()
@@ -249,6 +253,7 @@ class T5Model(nn.Module):
         )
 
         self.output_proj = nn.Linear(args.d_model, args.vocab_size, bias=False)
+
         self.pad_idx = args.pad_idx
         self.init_weight()
 
@@ -258,52 +263,87 @@ class T5Model(nn.Module):
                 nn.init.xavier_uniform_(param)
 
     def create_padding_mask(self, seq, pad_idx=0):
-        return (seq != pad_idx).unsqueeze(1).unsqueeze(2)
+        mask = (seq != pad_idx).unsqueeze(1).unsqueeze(2)
+        return mask 
 
     def create_look_ahead_mask(self, size):
         mask = torch.triu(torch.ones(size, size), diagonal=1).bool().to(torch.bool)
         return ~mask
     
-    def forward(self, src_input_ids, target_input_ids, pad_idx=0):
+    # def forward(self, src_input_ids, target_input_ids, pad_idx=0):
           
-        pad_idx = self.pad_idx
+    #     pad_idx = self.pad_idx
         
-        src_mask = self.create_padding_mask(src_input_ids,pad_idx)
+    #     src_mask = self.create_padding_mask(src_input_ids,pad_idx)
 
-        target_padding_mask = self.create_padding_mask(target_input_ids, pad_idx)
-        look_ahead_mask = self.create_look_ahead_mask(target_input_ids.size(1)).to(target_input_ids.device)
-        look_ahead_mask = look_ahead_mask.unsqueeze(0).unsqueeze(1)
+    #     target_padding_mask = self.create_padding_mask(target_input_ids, pad_idx)
+    #     look_ahead_mask = self.create_look_ahead_mask(target_input_ids.size(1)).to(target_input_ids.device)
+    #     look_ahead_mask = look_ahead_mask.unsqueeze(0).unsqueeze(1)
 
-        target_mask = target_padding_mask & look_ahead_mask
+    #     target_mask = target_padding_mask & look_ahead_mask
+
+    #     encoder_output = self.encoder(src_input_ids, src_mask)
+
+    #     decoder_output = self.decoder(target_input_ids, encoder_output, self_mask=target_mask, cross_mask=src_mask)
+
+    #     logits = self.output_proj(decoder_output)
+
+    #     return logits
+
+    def forward(self, src_input_ids, target_input_ids, attention_mask=None, pad_idx=0):
+        device = src_input_ids.device
+
+        src_mask = None
+        if attention_mask is not None:
+            src_mask = attention_mask.unsqueeze(1).unsqueeze(2) 
+        else:
+            src_mask = self.create_padding_mask(src_input_ids, pad_idx)  
+
+        target_padding_mask = self.create_padding_mask(target_input_ids, pad_idx)  
+        look_ahead_mask = self.create_look_ahead_mask(target_input_ids.size(1), device)  
+        look_ahead_mask = look_ahead_mask.unsqueeze(0).unsqueeze(1)  
+
+        target_mask = target_padding_mask & look_ahead_mask  
 
         encoder_output = self.encoder(src_input_ids, src_mask)
-
         decoder_output = self.decoder(target_input_ids, encoder_output, self_mask=target_mask, cross_mask=src_mask)
 
         logits = self.output_proj(decoder_output)
-
         return logits
 
-class ModelArgs:
-    def __init__(
-        self,
-        vocab_size=32128,
-        d_model=512,
-        num_heads=8,
+    def get_num_params(self):
+        return sum(p.numel() for p in self.parameters())
+
+    def get_num_trainable_params(self):
+        return sum(p.numel() for p in self.parameters() if p.requires_grad)
+    
+
+
+
+def main():
+
+    tokenizer = T5Tokenizer()
+    tokenizer.load_vocab("../data/UIT-VSFC/t5_vocab.json")
+
+    args = ModelArgs(
+        vocab_size=len(tokenizer.token_to_id),
+        d_model=256,
         num_layers=6,
+        num_heads=8,
         hidden_dim=512,
         max_len=512,
         dropout=0.1,
         pad_idx=0
-    ):
-        self.vocab_size = vocab_size
-        self.d_model = d_model
-        self.num_heads = num_heads
-        self.num_layers = num_layers
-        self.hidden_dim = hidden_dim
-        self.max_len = max_len
-        self.dropout = dropout
-        self.pad_idx = pad_idx
+    )
+
+    model = T5Model(args)
+
+    print(f"Total parameters: {model.get_num_params():,}")
+    print(f"Trainable parameters: {model.get_num_trainable_params():,}")
+
+if __name__ == "__main__":
+    main()
+
 
 
 

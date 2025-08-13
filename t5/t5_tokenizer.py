@@ -1,4 +1,4 @@
-from preprocessing import T5Preprocessing
+from t5_preprocessing import T5Preprocessing
 
 import json
 from collections import defaultdict, Counter
@@ -78,32 +78,41 @@ class T5Tokenizer:
 
         return tokens[::-1] if tokens else ["<unk>"], min_scores[word_length]
 
-    def compute_loss(self, texts, prob):
-        loss = 0
-        word_freqs = defaultdict(int)
-        for text in texts:
-            words = self.preprocessor.preprocess_text(text).split()
-            for word in words:
-                word_freqs[word] += 1
-            for word, freq in word_freqs.items():
-                _, word_loss = self.viterbi(word, prob)
-                loss += freq + word_loss
+    # def compute_loss(self, texts, prob):
+    #     loss = 0
+    #     word_freqs = defaultdict(int)
+    #     for text in texts:
+    #         words = self.preprocessor.preprocess_text(text).split()
+    #         for word in words:
+    #             word_freqs[word] += 1
+    #         for word, freq in word_freqs.items():
+    #             _, word_loss = self.viterbi(word, prob)
+    #             loss += freq + word_loss
         
-        return loss
+    #     return loss
         
 
-    def compute_scores(self, prob):
-        scores = {}
-        model_loss = self.compute_loss(prob)
-        for token, scores in prob.items():
-            if len(token) == 1 or token in self.special_tokens:
-                continue
-            prob_without_token = copy.deepcopy(prob)
-            prob_without_token.pop(token)
+    # def compute_scores(self, prob):
+    #     scores = {}
+    #     model_loss = self.compute_loss(prob)
+    #     for token, scores in prob.items():
+    #         if len(token) == 1 or token in self.special_tokens:
+    #             continue
+    #         prob_without_token = copy.deepcopy(prob)
+    #         prob_without_token.pop(token)
 
-            scores[token] = self.compute_loss(prob_without_token) - model_loss
+    #         scores[token] = self.compute_loss(prob_without_token) - model_loss
 
-        return scores
+    #     return scores
+
+    def tokenize(self, text):
+        words = self.preprocessor.preprocess_text(text).split()
+        all_tokens = []
+        for word in words:
+            tokens, _ = self.viterbi(word, self.prob)
+            all_tokens.extend(tokens)
+        return all_tokens
+
 
 
     def build_vocab(self, texts):
@@ -120,19 +129,14 @@ class T5Tokenizer:
                 next_id += 1
         self.id_to_token = {i: token for token, i in self.token_to_id.items()}
 
-    def encode(self, text, add_special_tokens = True):
-        words = self.preprocessor.preprocess_text(text).split()
+    def encode(self, text, add_special_tokens=True):
+        tokens = self.tokenize(text)
         token_ids = []
-
         if add_special_tokens:
             token_ids.append(self.token_to_id["<s>"])
-        for word in words:
-            tokens, _ = self.viterbi(word, self.prob)
-            for token in tokens:
-                token_ids.append(self.token_to_id.get(token, self.token_to_id["<unk>"]))
+        token_ids.extend([self.token_to_id.get(t, self.token_to_id["<unk>"]) for t in tokens])
         if add_special_tokens:
             token_ids.append(self.token_to_id["</s>"])
-        
         return token_ids
 
     def decode(self, token_ids):
@@ -162,11 +166,12 @@ class T5Tokenizer:
         self.id_to_token = {int(k): v for k, v in vocab["id_to_token"].items()}
         self.freq = vocab["freq"]
         self.prob = vocab["prob"]
-        self.vocab_size = len(vocab)
+        self.vocab_size = len(self.token_to_id)
     
 
-if __name__ == "__main__":
+def main():
 
+    
     data_path = '../data/UIT-VSFC/merge_data/all_text.txt'
 
     with open(data_path, 'r', encoding='utf-8') as f:
@@ -187,13 +192,28 @@ if __name__ == "__main__":
     # tokenizer.save_vocab('../data/UIT-VSFC/t5_vocab.json')
     # print("Vocab đã được lưu tại: ../data/UIT-VSFC/t5_vocab.json")
 
-    # print("-"*80)
+    print("-"*80)
 
-    # text = "Cái khó nha, khó mà làm được á nha"
-    # encoded = tokenizer.encode(text, add_special_tokens=True)
-    # print(f"Encoded: {encoded}")
-    # decoded = tokenizer.decode(encoded)
-    # print(f"Decoded: {decoded}")
+    # ====== Chạy demo với 1 câu ======
+    test_sentence = "Cái khó nha, khó mà làm được á nha"
+    print("Câu gốc:", test_sentence)
+
+    tokens = tokenizer.tokenize(test_sentence)
+    print("Tokenized:", tokens)
+
+    encoded_ids = tokenizer.encode(test_sentence, add_special_tokens=True)
+    print("Token IDs:", encoded_ids)
+
+    subwords = [tokenizer.id_to_token[i] for i in encoded_ids]
+    print("Subwords:", subwords)
+
+    decoded_text = tokenizer.decode(encoded_ids)
+    print("Decoded:", decoded_text)
+
+
+if __name__ == "__main__":
+    main()
+
     
 
 
