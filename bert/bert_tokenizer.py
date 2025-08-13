@@ -2,7 +2,9 @@ import os
 import json
 import re
 from collections import defaultdict
-from preprocessing import TextPreprocessor
+from bert_preprocessing import TextPreprocessor
+from pyvi import ViTokenizer
+
 
 class BertTokenizer:
     def __init__(self, vocab_size=None,  min_frequency=None):
@@ -51,9 +53,12 @@ class BertTokenizer:
         for text in texts:
             if not text.strip():
                 continue
+            # for word in text.strip().split():
+            #     chars = ' '.join(list(word)) + ' </w>'
+            #     corpus[chars] += 1
             for word in text.strip().split():
-                chars = ' '.join(list(word)) + ' </w>'
-                corpus[chars] += 1
+                corpus[word + ' </w>'] += 1
+
 
         vocab = dict(self.special_tokens)
 
@@ -97,26 +102,6 @@ class BertTokenizer:
         # self.subwords = set(vocab.keys()) - set(self.special_tokens.keys())
         self.subwords = set(vocab.keys())
         self.id_to_token = {v: k for k, v in self.vocab.items()}
-
-    # def tokenizer_word(self, word):
-    #     if not word:
-    #         return []
-        
-    #     if word in self.vocab:
-    #         return [word]
-        
-    #     chars = ' '.join(list(word)) + ' </w>'
-
-    #     for pair in self.merges:
-    #         bigram = ' '.join(pair)
-    #         replacement = ''.join(pair)
-    #         chars = chars.replace(bigram, replacement)
-        
-    #     word_tokens = chars.split()
-        
-    #     tokens = [token if token in self.vocab else '[UNK]' for token in word_tokens]
-
-    #     return tokens
 
     def tokenizer_word(self, word):
         if not word:
@@ -164,8 +149,6 @@ class BertTokenizer:
                 for ch in token:
                     tokens.append(ch if ch in self.vocab else '[UNK]')
         return tokens
-
-
     
     def tokenizer(self, text):
         tokens = []
@@ -224,7 +207,6 @@ class BertTokenizer:
 
 
 if __name__ == "__main__":
-
     data_path = '../data/UIT-VSFC/merge_data/all_text.txt'
 
     with open(data_path, 'r', encoding='utf-8') as f:
@@ -233,52 +215,16 @@ if __name__ == "__main__":
     processor = TextPreprocessor()
     texts = [processor.preprocess_text(text) for text in texts]
 
+    tokenized_texts = [ViTokenizer.tokenize(text.strip()) for text in texts if text.strip()]
+
     tokenizer = BertTokenizer(min_frequency=1)
-    tokenizer.build_vocab(texts)
+    tokenizer.build_vocab(tokenized_texts)
 
-    # print(f"Số lượng token trong vocab: {len(tokenizer.vocab)}")
+    print(f"Số lượng token trong vocab: {len(tokenizer.vocab)}")
 
-    # tokenizer.save_vocab('../data/UIT-VSFC/bert_vocab.json')
-    # print("Vocab đã được lưu tại: ../data/UIT-VSFC/bert_vocab.json")
+    tokenizer.save_vocab('../data/UIT-VSFC/bert_vocab_word.json')
+    print("Vocab đã được lưu tại: ../data/UIT-VSFC/bert_vocab_word.json")
 
-
-    # # Kiểm tra với một câu bất kỳ
-    # test_sentence = "Chào bạn hôm nay trời đẹp quá!. Có ai ở đó không ?"
-    # test_sentence = processor.preprocess_text(test_sentence)
-    # tokens = tokenizer.tokenizer(test_sentence)
-    # token_ids = tokenizer.encode(test_sentence, add_special_tokens=True)
-
-    # print("Câu kiểm tra:", test_sentence)
-    # print("Tokens:", tokens)
-    # print("Token IDs:", token_ids)
-    # print("ID to token:", tokenizer.convert_ids_to_tokens(token_ids))
-
-    # # Kiểm tra với 2 câu
-    # sentence_a = "Tôi thích đọc sách vào buổi sáng."
-    # sentence_b = "Đó là cách tôi bắt đầu một ngày mới."
-
-    # # Tiền xử lý 2 câu
-    # sentence_a = processor.preprocess_text(sentence_a)
-    # sentence_b = processor.preprocess_text(sentence_b)
-
-    # # Token hóa từng câu riêng biệt (để xem từng bước)
-    # tokens_a = tokenizer.tokenizer(sentence_a)
-    # tokens_b = tokenizer.tokenizer(sentence_b)
-
-    # # Mã hóa 2 câu cùng lúc (BERT-style)
-    # token_ids = tokenizer.encode(sentence_a, sentence_b, add_special_tokens=True)
-
-    # sep_index = token_ids.index(tokenizer.token_to_id("[SEP]"))
-    # token_type_ids = [0] * (sep_index + 1) + [1] * (len(token_ids) - (sep_index + 1))
-
-    # # In kết quả
-    # print("Câu A:", sentence_a)
-    # print("Câu B:", sentence_b)
-    # print("Tokens A:", tokens_a)
-    # print("Tokens B:", tokens_b)
-    # print("Token IDs:", token_ids)
-    # print("ID to Token:", tokenizer.convert_ids_to_tokens(token_ids))
-    # print("Token Type IDs:", token_type_ids)
 
 
 

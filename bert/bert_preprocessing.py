@@ -2,6 +2,8 @@ import pandas as pd
 import re
 import string
 import unicodedata
+from pyvi import ViTokenizer
+
 
 class TextPreprocessor:
     def __init__(self):
@@ -46,5 +48,7 @@ class TextPreprocessor:
 # print(data.head())
 # print("-" * 30)
 # data['text'] = data['text'].apply(processor.preprocess_text)
+
 # print("Dữ liệu sau khi tiền xử lý:")
-# print(data.head())
+# pd.set_option('display.max_colwidth', None)
+# print(data[['text']].head(20))

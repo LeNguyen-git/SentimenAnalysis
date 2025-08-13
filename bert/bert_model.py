@@ -4,7 +4,7 @@ import torch.nn.functional as F
 import json
 import math
 
-with open("../data/UIT-VSFC/bert_vocab.json", "r", encoding="utf-8") as f:
+with open("../data/UIT-VSFC/bert_vocab_word.json", "r", encoding="utf-8") as f:
     vocab = json.load(f)
 
 vocab_size = len(vocab)
@@ -202,7 +202,7 @@ class ModelArgs:
         self.dropout = dropout
 
 class BertModel(nn.Module):
-    def  __init__(self, args: ModelArgs, num_labels=None):
+    def  __init__(self, args: ModelArgs, num_labels=None, num_topics=None):
         super().__init__()
         self.args = args
 
@@ -225,13 +225,21 @@ class BertModel(nn.Module):
         self.pooler = BertPooler(d_model=args.d_model)
         self.num_labels = num_labels
 
+        self.num_topics = num_topics
+
         if num_labels is not None:
             self.classifier = nn.Linear(args.d_model, num_labels)
             nn.init.xavier_uniform_(self.classifier.weight)
             nn.init.zeros_(self.classifier.bias)
+
+        if num_topics is not None:
+            self.topic_classifier = nn.Linear(args.d_model, num_topics)
+            nn.init.xavier_uniform_(self.topic_classifier.weight)
+            nn.init.zeros_(self.topic_classifier.bias)
+
         self.dropout = nn.Dropout(args.dropout)
 
-    def forward(self, input_ids, token_type_ids=None, attention_mask=None, labels=None):
+    def forward(self, input_ids, token_type_ids=None, attention_mask=None, labels=None, topics=None):
         embeddings = self.embedding(input_ids, token_type_ids)
         encoder_output = self.encoder(embeddings, attention_mask)
         pooled_output = self.pooler(encoder_output)
@@ -246,7 +254,21 @@ class BertModel(nn.Module):
                 return {"loss": loss, "logits": logits}
             return {"logits": logits}
 
-        return encoder_output, pooled_output
-    
+        if self.num_topics is not None:
+            pooled_output = self.dropout(pooled_output)
+            topic_logits = self.topic_classifier(pooled_output)
 
+            if topics is not None:
+                loss_fn = nn.CrossEntropyLoss()
+                loss = loss_fn(topic_logits, topics)
+                return {"loss": loss, "topic_logits": topic_logits}
+            return {"topic_logits": topic_logits}
+
+        return encoder_output, pooled_output
+
+    def get_num_params(self):
+        return sum(p.numel() for p in self.parameters())
+
+    def get_num_trainable_params(self):
+        return sum(p.numel() for p in self.parameters() if p.requires_grad)
 
