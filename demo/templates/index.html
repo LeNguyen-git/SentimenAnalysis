@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sentiment Analysis</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    />
+    <link href="../static/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="container py-4">
+      <h1 class="text-center my-4">Phân tích cảm xúc trong văn bản</h1>
+      <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <h4 class="mb-0">Dự đoán cảm xúc văn bản</h4>
+        </div>
+        <div class="card-body">
+          <div class="row g-3">
+            <!-- Nhập văn bản -->
+            <div class="col-md-6">
+              <form id="textForm">
+                <label for="text" class="form-label fw-bold"
+                  >Nhập văn bản:</label
+                >
+                <textarea
+                  id="text"
+                  rows="4"
+                  placeholder="Nhập đoạn văn bản..."
+                  class="form-control mb-3"
+                  spellcheck="false"
+                ></textarea>
+                <button type="submit" class="btn btn-primary w-100">
+                  Dự đoán
+                </button>
+              </form>
+            </div>
+            <!-- Kết quả -->
+            <div class="col-md-6">
+              <label for="text" class="form-label fw-bold"
+                >Kết quả dự đoán:</label
+              >
+              <div id="textResult" class="result-box">
+                Kết quả sẽ hiển thị ở đây...
+              </div>
+              <div id="explanationResult" class="mt-3"></div>
+              <div id="explanationResultAPI" class="mt-3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form dự đoán file -->
+      <div class="card shadow-sm">
+        <div class="card-header bg-success text-white">
+          <h4 class="mb-0">Dự đoán từ File</h4>
+        </div>
+        <div class="card-body">
+          <div class="row g-3">
+            <!-- Upload file -->
+            <div class="col-md-6">
+              <form id="fileForm" enctype="multipart/form-data">
+                <div class="mb-3">
+                  <label for="file" class="form-label fw-bold"
+                    >Chọn file để dự đoán:</label
+                  >
+                  <input
+                    type="file"
+                    id="file"
+                    class="form-control"
+                    accept=".txt, .csv, .json, .xlsx, .xls"
+                    aria-describedby="fileHelp"
+                  />
+                  <div id="fileHelp" class="form-text">
+                    Hỗ trợ các định dạng:
+                    <strong>.txt, .csv, .json, .xlsx, .xls</strong>
+                  </div>
+                </div>
+
+                <div class="form-check mb-3">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="save-file"
+                    name="save"
+                  />
+                  <label class="form-check-label" for="save-file">
+                    Lưu file kết quả
+                  </label>
+                </div>
+
+                <button type="submit" class="btn btn-success w-100">
+                  Dự đoán từ File
+                </button>
+              </form>
+            </div>
+
+            <!-- Kết quả -->
+            <div class="col-md-6">
+              <label for="text" class="form-label fw-bold"
+                >Kết quả dự đoán: (Thống kê theo chủ đề)</label
+              >
+              <div id="fileResult" class="result-box">
+                Kết quả sẽ hiển thị ở đây...
+              </div>
+              <div id="explainArea"></div>
+              <div id="explanationTopAPI" class="mb-4"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Xử lý form dự đoán văn bản
+      document
+        .getElementById("textForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+          const text = document.getElementById("text").value.trim();
+          const resultDiv = document.getElementById("textResult");
+          resultDiv.innerHTML = "Đang dự đoán...";
+
+          if (!text) {
+            resultDiv.innerHTML = "<p class='error'>Vui lòng nhập văn bản</p>";
+            return;
+          }
+
+          try {
+            const res = await fetch("bert-predict", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ text }),
+            });
+
+            if (!res.ok) {
+              const err = await res.json();
+              throw new Error(err.detail || "Có lỗi xảy ra");
+            }
+
+            const data = await res.json();
+            console.log("Dữ liệu nhận từ server:", data);
+            resultDiv.innerHTML = `
+            <div class="result">
+            <p><strong>Cảm xúc:</strong> ${data.sentiment.label} (Độ tin cậy: ${data.sentiment.confidence}%)</p>
+
+            <div style="background:#f7fbfc; border-radius:10px; padding:10px; width: 600px;">
+                <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;">
+                  <div style="display:flex; align-items:center; flex:1; margin-right:8px;">
+                    <i class="bi bi-emoji-smile" style="color:#4CAF50; font-size:16px; margin-right:5px;"></i>
+                    <div style="height:10px; background:#4CAF50; border-radius:5px; width:${data.sentiment.probabilities[2]}%; max-width:400px;"></div>
+                  </div>
+                  <span>Tích cực: ${data.sentiment.probabilities[2]}%</span>
+                </div>
+                <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;">
+                  <div style="display:flex; align-items:center; flex:1; margin-right:8px;">
+                    <i class="bi bi-emoji-neutral" style="color:#B0BEC5; font-size:16px; margin-right:5px;"></i>
+                    <div style="height:10px; background:#B0BEC5; border-radius:5px; width:${data.sentiment.probabilities[1]}%; max-width:400px; margin-right:8px;"></div>
+                  </div>
+                  <span>Trung tính: ${data.sentiment.probabilities[1]}%</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <div style="display:flex; align-items:center; flex:1; margin-right:8px;">
+                    <i class="bi bi-emoji-frown" style="color:#EF5350; font-size:16px; margin-right:5px;"></i>
+                    <div style="height:10px; background:#EF5350; border-radius:5px; width:${data.sentiment.probabilities[0]}%; max-width:400px; margin-right:8px;"></div>
+                  </div>
+                  <span>Tiêu cực: ${data.sentiment.probabilities[0]}%</span>
+                </div>
+            </div>
+            <br>
+            <p><strong>Chủ đề:</strong> ${data.topic.topic} (Độ tin cậy: ${data.topic.confidence}%)</p>
+
+            <div style="background:#f7fbfc; border-radius:10px; padding:10px; width:600px;">
+              <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;">
+                <div style="display:flex; align-items:center; flex:1; margin-right:8px;">
+                  <i class="bi bi-person-workspace" style="color:#2196F3; font-size:16px; margin-right:5px;"></i>
+                  <div style="height:10px; background:#2196F3; border-radius:5px; width:${data.topic.probabilities[0]}%; max-width:400px;"></div>
+                </div>
+                <span>Giảng viên: ${data.topic.probabilities[0]}%</span>
+              </div>
+
+              <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;">
+                <div style="display:flex; align-items:center; flex:1; margin-right:8px;">
+                  <i class="bi bi-journal-bookmark" style="color:#FF9800; font-size:16px; margin-right:5px;"></i>
+                  <div style="height:10px; background:#FF9800; border-radius:5px; width:${data.topic.probabilities[1]}%; max-width:400px;"></div>
+                </div>
+                <span>Chương trình học: ${data.topic.probabilities[1]}%</span>
+              </div>
+
+              <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;">
+                <div style="display:flex; align-items:center; flex:1; margin-right:8px;">
+                  <i class="bi bi-building" style="color:#4CAF50; font-size:16px; margin-right:5px;"></i>
+                  <div style="height:10px; background:#4CAF50; border-radius:5px; width:${data.topic.probabilities[2]}%; max-width:400px;"></div>
+                </div>
+                <span>Cơ sở vật chất: ${data.topic.probabilities[2]}%</span>
+              </div>
+
+              <div style="display:flex; align-items:center; justify-content:space-between;">
+                <div style="display:flex; align-items:center; flex:1; margin-right:8px;">
+                  <i class="bi bi-three-dots" style="color:#9E9E9E; font-size:16px; margin-right:5px;"></i>
+                  <div style="height:10px; background:#9E9E9E; border-radius:5px; width:${data.topic.probabilities[3]}%; max-width:400px;"></div>
+                </div>
+                <span>Khác: ${data.topic.probabilities[3]}%</span>
+              </div>
+            </div>
+
+
+          </div>
+        `;
+
+            // DÒNG NÀY COMMENT LẠI NÈ
+            const explainRes = await fetch("/explain-text", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ text }),
+            });
+            const explainData = await explainRes.json();
+            const explainText = explainData.text;
+            const explainSentiment = explainData.sentiment;
+            const explainTopic = explainData.topic;
+            const keywords = explainData.keywords
+              .map(
+                (word) => `<span class="badge bg-secondary me-1">${word}</span>`
+              )
+              .join(" ");
+
+            document.getElementById("explanationResult").innerHTML = `
+                <div class="alert alert-primary style="font-size: 18px;"">
+                <strong>Văn bản:</strong> ${explainText} <br>
+                <strong>Chủ đề:</strong> ${explainTopic} <br>
+                <strong>Các từ khóa tạo nên cảm xúc:</strong>
+                <strong>${explainSentiment}</strong>
+                <br>
+              ${keywords || "<i>Không có</i>"}
+            `;
+
+            const explainResApi = await fetch("/explain-text-api", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ text }),
+            });
+            const explainDataApi = await explainResApi.json();
+            const explainTextApi = explainDataApi.textapi;
+            const explainSentimentApi = explainDataApi.sentimentapi;
+            const explainTopicApi = explainDataApi.topicapi;
+            const explanationApi = explainDataApi.explanationsapi;
+
+            const explanationData = JSON.parse(
+              explainDataApi.explanationsapi.replace(/```json\s*|```/g, "")
+            );
+
+            console.log(explanationData.explanation);
+
+            document.getElementById("explanationResultAPI").innerHTML = `
+              <div class="alert alert-primary" style="font-size: 18px; color: black;">
+              <strong>Văn bản:</strong> ${explainTextApi} <br>
+              <strong>Chủ đề:</strong> ${explainTopicApi} <br>
+              <strong>Cảm xúc:</strong> ${explainSentimentApi} <br>
+              <strong>Giải thích:</strong> ${explanationData.explanation}
+          `;
+          } catch (error) {
+            resultDiv.innerHTML = `<p class='error'>${error.message}</p>`;
+          }
+        });
+
+      async function loadTopExplanation(topic, sentiment) {
+        const explainArea = document.getElementById("explainArea");
+
+        if (!topic || !sentiment) {
+          explainArea.innerHTML =
+            "<p class='text-danger'>Vui lòng chọn chủ đề và cảm xúc hợp lệ!</p>";
+          return;
+        }
+
+        explainArea.innerHTML = "<h3>Đang phân tích lý do...</h3>";
+
+        try {
+          const resExplain = await fetch(
+            `/explain?target_sentiment=${encodeURIComponent(
+              sentiment
+            )}&target_topic=${encodeURIComponent(topic)}`
+          );
+
+          if (!resExplain.ok) {
+            throw new Error("Không thể lấy dữ liệu giải thích");
+          }
+
+          const explainData = await resExplain.json();
+
+          const sentence = explainData.explanations[topic] || "";
+          const htmlSentences = sentence.replace(
+            /\*\*(.*?)\*\*/g,
+            "<strong>$1</strong>"
+          );
+
+          explainArea.innerHTML = `
+          <div class="alert alert-success" style="font-size: 18px;">
+            <strong>Chủ đề:</strong> ${topic} <br>
+            <strong>Cảm xúc cao nhất:</strong> ${sentiment} <br>
+            <p>${htmlSentences}</p>
+          </div>
+    `;
+        } catch (err) {
+          explainArea.innerHTML = `<p class='text-danger'>${err.message}</p>`;
+        }
+      }
+
+      document
+        .getElementById("fileForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          const fileInput = document.getElementById("file");
+          const resultDiv = document.getElementById("fileResult");
+          const explainArea = document.getElementById("explainArea");
+          const explanationTopAPI =
+            document.getElementById("explanationTopAPI");
+
+          if (!fileInput.files.length) {
+            resultDiv.innerHTML = "<p class='error'>Vui lòng chọn file</p>";
+            return;
+          }
+
+          resultDiv.innerHTML = "Đang dự đoán...";
+
+          const formData = new FormData();
+          formData.append("file", fileInput.files[0]);
+          const saveChecked = document.getElementById("save-file").checked;
+          formData.set("save", saveChecked.toString());
+
+          try {
+            const res = await fetch("/bert-predict-file", {
+              method: "POST",
+              body: formData,
+            });
+
+            if (!res.ok) {
+              const err = await res.json();
+              throw new Error(err.detail || "Có lỗi xảy ra");
+            }
+
+            const data = await res.json();
+            console.log("Dữ liệu nhận từ server:", data);
+
+            // Tạo HTML dropdown, nút giải thích, danh sách chủ đề
+            let html = `
+              <div class="mb-3 d-flex align-items-center justify-content-between" style="gap:10px;">
+                <div style="flex-grow:1;">
+                  <select id="topicSelect" class="form-select" style="max-width:100%; height:40px; box-sizing: border-box;">
+                    ${Object.keys(data.stats)
+                      .map(
+                        (topic) => `<option value="${topic}">${topic}</option>`
+                      )
+                      .join("")}
+                  </select>
+                </div>
+                <button
+                  id="explainBtn"
+                  class="btn btn-outline-success"
+                  style="
+                    white-space: nowrap;
+                    min-width:110px;
+                    height:40px;
+                    line-height: 40px;
+                    box-sizing: border-box;
+                    padding-top: 0;
+                    padding-bottom: 0;
+                  "
+                >
+                  <i class="bi bi-lightbulb"></i> Giải thích
+                </button>
+              </div>
+              <ul class="list-group mb-3" id="topicList"></ul>
+            `;
+
+            if (data.download_url) {
+              html += `
+                <p class="mt-3">
+                  <a href="${data.download_url}" download
+                    style="display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:8px;
+                          background:linear-gradient(90deg, #4CAF50, #2E7D32); color:#fff; font-weight:500; text-decoration:none;">
+                    <i class="bi bi-download" style="font-size:1.2rem;"></i>
+                    <span>Tải file kết quả</span>
+                  </a>
+                </p>
+              `;
+            }
+
+            resultDiv.innerHTML = html;
+
+            const topicSelect = document.getElementById("topicSelect");
+            const topicList = document.getElementById("topicList");
+
+            // Hàm render một chủ đề ra giao diện
+            function renderTopic(topic, info) {
+              return `
+                <li class="list-group-item">
+                  <div class="fw-bold" style="font-size:24px;">${topic}</div>
+                  <div>Cảm xúc cao nhất: <strong>${
+                    info.max_sentiment
+                  }</strong></div>
+                  <div style="background:#f7fbfc; border-radius:10px; padding:10px; width:550px; margin-top:6px;">
+                    ${renderSentiment(
+                      "Tích cực",
+                      "#4CAF50",
+                      "bi-emoji-smile",
+                      info
+                    )}
+                    ${renderSentiment(
+                      "Trung tính",
+                      "#B0BEC5",
+                      "bi-emoji-neutral",
+                      info
+                    )}
+                    ${renderSentiment(
+                      "Tiêu cực",
+                      "#EF5350",
+                      "bi-emoji-frown",
+                      info
+                    )}
+                  </div>
+                </li>
+              `;
+            }
+
+            // Hàm render thanh cảm xúc
+            function renderSentiment(type, color, icon, info) {
+              return `
+                <div style="display:flex; flex-direction:column; margin-bottom:6px; flex:1; margin-right:8px;">
+                  <div style="display:flex; align-items:center;">
+                    <i class="bi ${icon}" style="color:${color}; font-size:16px; margin-right:5px;"></i>
+                    <div style="height:10px; background:${color}; border-radius:5px; width:${info.percentages[type]}%; margin-right:8px;"></div>
+                  </div>
+                  <div style="margin-top:4px;">
+                    <span>${type}: ${info.percentages[type]}%</span>
+                    <span> — Số câu ${type.toLowerCase()}: ${info.counts[type]} trên tổng ${info.total} câu</span>
+                  </div>
+                </div>
+              `;
+            }
+
+            // Hàm gọi giải thích LIME (API /explain)
+            async function loadExplainLIME(topic, sentiment) {
+              explainArea.innerHTML = "<h3>Đang phân tích lý do (LIME)...</h3>";
+              try {
+                const res = await fetch(
+                  `/explain?target_sentiment=${encodeURIComponent(
+                    sentiment
+                  )}&target_topic=${encodeURIComponent(topic)}`
+                );
+                if (!res.ok)
+                  throw new Error("Không thể lấy dữ liệu giải thích LIME");
+                const explainData = await res.json();
+                const sentence = explainData.explanations[topic] || "";
+                const htmlSentences = sentence.replace(
+                  /\*\*(.*?)\*\*/g,
+                  "<strong>$1</strong>"
+                );
+                explainArea.innerHTML = `
+              <div class="alert alert-success" style="font-size: 18px;">
+                <h5>Giải thích LIME cho chủ đề "${topic}"</h5>
+                <strong>Cảm xúc cao nhất:</strong> ${sentiment} <br>
+                <p>${htmlSentences}</p>
+              </div>
+            `;
+              } catch (err) {
+                explainArea.innerHTML = `<p class='text-danger'>${err.message}</p>`;
+              }
+            }
+
+            // Hàm gọi giải thích Gemini (API /explain-file-api)
+            async function loadExplainGemini(topic, sentiment) {
+              console.log("Gọi giải thích với", topic, sentiment);
+
+              explanationTopAPI.innerHTML = "<h3>Đang phân tích lý do ...</h3>";
+              try {
+                const res = await fetch(
+                  `/explain-file-api?target_topic=${encodeURIComponent(
+                    topic
+                  )}&target_sentiment=${encodeURIComponent(sentiment)}`
+                );
+                if (!res.ok)
+                  throw new Error("Không thể lấy dữ liệu giải thích");
+                const data = await res.json();
+
+                console.log(data);
+
+                let explanationData;
+                try {
+                  explanationData = JSON.parse(
+                    data.exp_result.replace(/```json\s*|```/g, "")
+                  );
+                } catch {
+                  explanationData = { explanation: data.exp_result };
+                }
+
+                explanationTopAPI.innerHTML = `
+                  <br>
+                  <div class="alert alert-info" style="font-size: 18px; color: black;">
+                    <h5>Giải thích cho chủ đề "${topic}"</h5>
+                    <strong>Cảm xúc:</strong> ${sentiment} <br>
+                    <strong>Giải thích:</strong> ${
+                      explanationData.explanation || data.exp_result
+                    }
+                  </div>
+                `;
+              } catch (err) {
+                explanationTopAPI.innerHTML = `<p class='text-danger'>${err.message}</p>`;
+              }
+            }
+
+            function updateTopicUI(topic) {
+              if (!topic || !data.stats[topic]) {
+                explainArea.innerHTML =
+                  "<p class='text-danger'>Vui lòng chọn chủ đề hợp lệ!</p>";
+                explanationTopAPI.innerHTML = "";
+                topicList.innerHTML = "";
+                return;
+              }
+              topicList.innerHTML = renderTopic(topic, data.stats[topic]);
+              explainArea.innerHTML = "";
+              explanationTopAPI.innerHTML = "";
+            }
+
+            // Hàm cập nhật giao diện khi chọn chủ đề
+            async function updateExplanations(topic) {
+              if (!topic || !data.stats[topic]) {
+                explainArea.innerHTML =
+                  "<p class='text-danger'>Vui lòng chọn chủ đề hợp lệ!</p>";
+                explanationTopAPI.innerHTML = "";
+                topicList.innerHTML = "";
+                return;
+              }
+              topicList.innerHTML = renderTopic(topic, data.stats[topic]);
+
+              const sentiment = data.stats[topic].max_sentiment;
+              // await Promise.all([
+              //   // loadExplainLIME(topic, sentiment),
+              //   loadExplainGemini(topic, sentiment),
+              // ]);
+
+              await loadExplainGemini(topic, sentiment);
+            }
+
+            // Xử lý sự kiện đổi dropdown
+            topicSelect.addEventListener("change", () => {
+              updateExplanations(topicSelect.value);
+            });
+
+            // Xử lý sự kiện nút Giải thích
+            document
+              .getElementById("explainBtn")
+              .addEventListener("click", () => {
+                updateExplanations(topicSelect.value);
+              });
+
+            // Mặc định chọn chủ đề "Giảng viên"
+            if (data.stats["Giảng viên"]) {
+              topicSelect.value = "Giảng viên";
+              // updateExplanations("Giảng viên");
+              updateTopicUI("Giảng viên");
+            } else {
+              const firstTopic = Object.keys(data.stats)[0];
+              if (firstTopic) {
+                topicSelect.value = firstTopic;
+                // updateExplanations(firstTopic);
+                updateTopicUI(firstTopic);
+              }
+            }
+          } catch (error) {
+            resultDiv.innerHTML = `<p class='error'>${error.message}</p>`;
+          }
+        });
+    </script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+      integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
