@@ -1,4 +1,4 @@
-import preprocessing
+import llama_preprocessing
 
 import re
 import json
@@ -8,7 +8,7 @@ with open('../data/UIT-VSFC/merge_data/all_text.txt', 'r', encoding='utf-8') as 
     raw_data = f.read().splitlines()
 
 
-raw_data = [preprocessing.preprocess_text(text) for text in raw_data]
+raw_data = [llama_preprocessing.preprocess_text(text) for text in raw_data]
 
 
 class LLaMaTokenizer:

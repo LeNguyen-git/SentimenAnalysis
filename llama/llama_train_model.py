@@ -12,12 +12,12 @@ from torch.optim.lr_scheduler import CosineAnnealingLR
 
 
 #Import thư viên cần thiết của mô hình MiniLLama
-from model import MiniLlamaModel, ModelArgs
-from dataset import LLamaDataset, create_dataloader
-from tokenizer import LLaMaTokenizer
-import preprocessing
+from llama_model import MiniLlamaModel, ModelArgs
+from llama_dataset import LLamaDataset, create_dataloader
+from llama_tokenizer import LLaMaTokenizer
+import llama_preprocessing
 
-def train(model, train_loader, optimizer, device):
+def train_labels(model, train_loader, optimizer, device):
     model.train()
     total_loss = 0
     all_preds = []
@@ -32,7 +32,7 @@ def train(model, train_loader, optimizer, device):
 
         optimizer.zero_grad()
 
-        outputs = model(input_ids, attention_mask, labels)
+        outputs = model(input_ids, attention_mask=attention_mask, labels=labels)
 
         loss = outputs['loss']
         logits = outputs['logits']
@@ -56,7 +56,7 @@ def train(model, train_loader, optimizer, device):
 
     return avg_loss, train_accuracy, train_f1
 
-def evaluate(model, val_loader, device):
+def evaluate_labels(model, val_loader, device):
     model.eval()
     total_loss = 0
     all_preds = []
@@ -68,7 +68,8 @@ def evaluate(model, val_loader, device):
             attention_mask = batch['attention_mask'].to(device)
             labels = batch['labels'].to(device)
 
-            outputs = model(input_ids, attention_mask, labels)
+            outputs = model(input_ids, attention_mask=attention_mask, labels=labels)
+
 
             loss = outputs['loss']
             logits = outputs['logits']
@@ -83,6 +84,75 @@ def evaluate(model, val_loader, device):
     val_loss = total_loss / len(val_loader)
     val_accuracy = accuracy_score(all_labels, all_preds)
     val_f1 = f1_score(all_labels, all_preds, average='weighted')
+
+    return val_loss, val_accuracy, val_f1
+
+def train_topics(model, train_loader, optimizer, device):
+    model.train()
+    total_loss = 0
+    all_preds = []
+    all_topics = []
+
+    progress_bar = tqdm(train_loader, desc="Training")
+
+    for batch in progress_bar:
+        input_ids = batch['input_ids'].to(device)
+        attention_mask = batch['attention_mask'].to(device)
+        topics = batch['topics'].to(device)
+
+        optimizer.zero_grad()
+
+        outputs = model(input_ids, attention_mask=attention_mask, topics=topics)
+
+        loss = outputs['topics_loss']
+        topic_logits = outputs['topic_logits']
+
+        loss.backward()
+        torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
+        optimizer.step()
+
+        total_loss += loss.item()
+
+        preds = torch.argmax(topic_logits, dim=-1).to(device)
+        
+        all_preds.extend(preds.cpu().tolist())
+        all_topics.extend(topics.cpu().tolist())
+
+        progress_bar.set_postfix({'loss': f'{loss.item():.4f}'})
+
+    avg_loss = total_loss / len(train_loader)
+    train_accuracy = accuracy_score(all_topics, all_preds)
+    train_f1 = f1_score(all_topics, all_preds, average='weighted')
+
+    return avg_loss, train_accuracy, train_f1
+
+def evaluate_topics(model, val_loader, device):
+    model.eval()
+    total_loss = 0
+    all_preds = []
+    all_topics = []
+
+    with torch.no_grad():
+        for batch in val_loader:
+            input_ids = batch['input_ids'].to(device)
+            attention_mask = batch['attention_mask'].to(device)
+            topics = batch['topics'].to(device)
+
+            outputs = model(input_ids, attention_mask=attention_mask, topics=topics)
+
+            loss = outputs['topics_loss']
+            topics_logits = outputs['topic_logits']
+
+            total_loss += loss.item()
+
+            preds = torch.argmax(topics_logits, dim=-1).to(device)
+
+            all_preds.extend(preds.cpu().tolist())
+            all_topics.extend(topics.cpu().tolist())
+
+    val_loss = total_loss / len(val_loader)
+    val_accuracy = accuracy_score(all_topics, all_preds)
+    val_f1 = f1_score(all_topics, all_preds, average='weighted')
 
     return val_loss, val_accuracy, val_f1
 
@@ -160,7 +230,7 @@ def main():
         n_layers=6,
         n_heads=8,
         max_seq_len=128,
-        num_classes=3,
+        num_labels=3,
         num_groups=4
     )
 
@@ -175,10 +245,10 @@ def main():
 
     for epoch in range(num_epochs):
         print(f"Epoch {epoch + 1}/{num_epochs}")
-        train_loss, train_accuracy, train_f1 = train(model, train_loader, optimizer, device)
+        train_loss, train_accuracy, train_f1 = train_labels(model, train_loader, optimizer, device)
         print(f"Train Loss: {train_loss:.4f}, Train Accuracy: {train_accuracy:.4f}, Train F1: {train_f1:.4f}")
 
-        val_loss, val_acc, val_f1 = evaluate(model, val_loader, device)
+        val_loss, val_acc, val_f1 = evaluate_labels(model, val_loader, device)
         print(f"Validation Loss: {val_loss:.4f}, Validation Accuracy: {val_acc:.4f}, Validation F1: {val_f1:.4f}")
 
         # scheduler.step()
@@ -187,7 +257,59 @@ def main():
         save_checkpoint(model, optimizer, epoch, checkpoint_path)
 
         training_history(train_loss, train_accuracy, train_f1, val_loss, val_acc, val_f1, epoch, history_file)
+
+def main_topics():
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    print(f"Using device: {device}")
+
+    tokenizer = LLaMaTokenizer({})
+    tokenizer.load_vocab('../data/UIT-VSFC/llama_vocab.json')
+
+    train_dataset = LLamaDataset(
+        data_path='../data/UIT-VSFC/merge_data/train_data.csv',
+        tokenizer=tokenizer,
+        max_length=128
+    )
+
+    train_loader = create_dataloader(train_dataset, batch_size=8, shuffle=True)
+
+    val_dataset = LLamaDataset(
+        data_path='../data/UIT-VSFC/merge_data/dev_data.csv',
+        tokenizer=tokenizer,
+        max_length=128
+    )
+
+    val_loader = create_dataloader(val_dataset, batch_size=8, shuffle=False)
+
+    model_args = ModelArgs(
+        vocab_size=tokenizer.vocab_size,
+        hidden_dim=512,
+        d_model=256,
+        n_layers=6,
+        n_heads=8,
+        max_seq_len=128,
+        num_groups=4,
+        num_topics=4
+    )
+
+    checkpoint_path = 'checkpoints/llama_model_topic.pth'
+    history_file = 'training_history/llama_training_history_topic.json'
+    model = MiniLlamaModel(model_args).to(device)
+    
+    optimizer = optim.AdamW(model.parameters(), lr=1e-4, weight_decay=1e-2)
+
+    for epoch in range(3):
+        print(f"Epoch {epoch + 1}/3")
+        train_loss, train_accuracy, train_f1 = train_topics(model, train_loader, optimizer, device)
+        print(f"Train Loss: {train_loss:.4f}, Train Accuracy: {train_accuracy:.4f}, Train F1: {train_f1:.4f}")
+
+        val_loss, val_acc, val_f1 = evaluate_topics(model, val_loader, device)
+        print(f"Validation Loss: {val_loss:.4f}, Validation Accuracy: {val_acc:.4f}, Validation F1: {val_f1:.4f}")
+
+        save_checkpoint(model, optimizer, epoch, checkpoint_path)
+
+        training_history(train_loss, train_accuracy, train_f1, val_loss, val_acc, val_f1, epoch, history_file)
         
 
 if __name__ == "__main__":
-    main()
+    main_topics()

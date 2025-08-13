@@ -27,6 +27,7 @@ class ManualEmbedding(nn.Module):
 class RotaryPositionEmbedding(nn.Module):
     def __init__(self, d_model, max_len=1024):
         super().__init__()
+        assert d_model % 2 == 0, "d_model must be even for Rotary Position Embedding"
         self.d_model = d_model
         self.max_len = max_len
 
@@ -166,7 +167,7 @@ class GroupedSelfAttention(nn.Module):
 
 
 class RMSNorm(nn.Module):
-    def __init__(self, d_model, eps=1e-8):
+    def __init__(self, d_model, eps=1e-5):
         super().__init__()
         self.eps = eps
         self.weight = nn.Parameter(torch.ones(d_model))
@@ -238,8 +239,9 @@ class ModelArgs:
             n_layers: int = 6,
             hidden_dim: int = 512,
             max_seq_len: int = 256,
-            num_classes: int = 3,
+            num_labels: int = None,
             num_groups: int = 4,
+            num_topics: int = None
             
     ):
         self.vocab_size = vocab_size
@@ -248,8 +250,9 @@ class ModelArgs:
         self.n_layers = n_layers
         self.hidden_dim = hidden_dim
         self.max_seq_len = max_seq_len
-        self.num_classes = num_classes
+        self.num_labels = num_labels
         self.num_groups = num_groups
+        self.num_topics = num_topics
         
 
 class MiniLlamaModel(nn.Module):
@@ -274,8 +277,19 @@ class MiniLlamaModel(nn.Module):
         #Layer Norm
         self.norm = RMSNorm(args.d_model)
 
+        self.num_labels = args.num_labels
+        self.num_topics = args.num_topics
+
         # Classifier head
-        self.classifier = nn.Linear(args.d_model, args.num_classes)
+        if args.num_labels is not None: 
+            self.classifier = nn.Linear(args.d_model, args.num_labels)
+            nn.init.xavier_uniform_(self.classifier.weight)
+            nn.init.zeros_(self.classifier.bias)
+        
+        if args.num_topics is not None:
+            self.topic_classifier = nn.Linear(args.d_model, args.num_topics)
+            nn.init.xavier_uniform_(self.topic_classifier.weight)
+            nn.init.zeros_(self.topic_classifier.bias)
 
         #Dropout
         self.dropout = nn.Dropout(0.1)
@@ -296,7 +310,7 @@ class MiniLlamaModel(nn.Module):
             torch.nn.init.xavier_uniform_(module)
             # torch.nn.init.normal_(module.weight, mean=0.0, std=0.02)
 
-    def forward(self, input_ids: torch.Tensor, attention_mask=None, labels=None):
+    def forward(self, input_ids: torch.Tensor, attention_mask=None, labels=None, topics=None):
         # Token Embedding
         x = self.embedding(input_ids)
         #dropout
@@ -315,18 +329,22 @@ class MiniLlamaModel(nn.Module):
             pooled = x_masked.sum(dim=1) / (mask.sum(dim=1) + 1e-9)
         else:
             pooled = x.mean(dim=1)
-        
-        # Classification
-        logits = self.classifier(pooled)  # (batch_size, num_classes)
-        
-        output = {'logits': logits}
+                
+        output = {}
         
         # Calculate loss if labels are provided
-        if labels is not None:
-            loss_function = nn.CrossEntropyLoss()
-            loss = loss_function(logits, labels)
-            output['loss'] = loss
-        
+        if self.num_labels is not None:
+            logits = self.classifier(pooled)
+            output['logits'] = logits
+            if labels is not None:
+                loss_function = nn.CrossEntropyLoss()
+                output['loss'] = loss_function(logits, labels)
+        if self.num_topics is not None:
+            topic_logits = self.topic_classifier(pooled)
+            output['topic_logits'] = topic_logits
+            if topics is not None:
+                loss_function = nn.CrossEntropyLoss()
+                output['topics_loss'] = loss_function(topic_logits, topics)
         return output
 
     def get_num_params(self):
@@ -336,4 +354,23 @@ class MiniLlamaModel(nn.Module):
         return sum(p.numel() for p in self.parameters() if p.requires_grad)
     
 
-        
+
+def main():
+    args = ModelArgs(
+        vocab_size=vocab_size,
+        hidden_dim=512,
+        d_model=256,
+        n_layers=6,
+        n_heads=8,
+        max_seq_len=128,
+        num_labels=3,
+        num_groups=4
+    )
+
+    model = MiniLlamaModel(args)  
+
+    print(f"Total parameters: {model.get_num_params():,}")
+    print(f"Trainable parameters: {model.get_num_trainable_params():,}")
+
+if __name__ == "__main__":
+    main()       
