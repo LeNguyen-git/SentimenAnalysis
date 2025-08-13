@@ -48,7 +48,6 @@ topic,text,sentiment
 1,Chương trình đào tạo phù hợp với thị trường lao động hiện nay.,1
 3,Anh ta là một người thân thiện và hòa đồng.,1
 2,Phòng học được trang bị máy lạnh tiện lợi giúp giảm thiểu những rắc rối không mong muốn khi học tập.,1
-3,Bạn ấy rất thân thiện và luôn sẵn sàng giúp đỡ.,1
 0,Giảng viên giáo viên thường đưa ra các bài làm và kiểm tra khó.,1
 2,Đội ngũ nhân viên hỗ trợ cơ sở vật chất trường rất nhanh nhẹn và thân thiện,1
 2,Khuôn viên trường rộng rãi và thoáng mát.,1
@@ -140,7 +139,6 @@ topic,text,sentiment
 3,Chị ấy có tâm hồn tràn đầy yêu thương và giúp đỡ người khác một cách tận tình.,1
 1,Tôi cảm thấy chương trình đào tạo đáp ứng được nhu cầu của những sinh viên có trình độ khác nhau.,1
 1,Trang bị đầy đủ thiết bị và phòng học hiện đại.,1
-2,"The campus is clean and tidy, which makes for a pleasant environment.",1
 1,I appreciate the wide range of courses offered.,1
 3,Anh ấy thật sự là một người gặp may trong cuộc sống.,1
 2,The university's facilities are practical and achieve the objectives.,1
@@ -168,7 +166,6 @@ topic,text,sentiment
 1,Giáo viên đáp ứng kịp thời nhu cầu của học sinh.,1
 2,Trường đảm bảo tài chính và hỗ trợ học bổng cho sinh viên có hoàn cảnh khó khăn.,1
 2,Các tài liệu nghiên cứu hàng đầu,1
-2,Trường đại học của tôi có thang máy phục vụ cho sinh viên có khó khăn về sức khỏe hoặc vận động.,1
 0,Thầy giảng dạy rất sáng tạo và đa dạng trong phương pháp giảng dạy.,1
 3,Anh ấy có tâm lý học rất tốt và luôn lắng nghe người khác.,1
 3,Bạn của tôi rất chịu khó và kiên trì.,1
@@ -180,9 +177,7 @@ topic,text,sentiment
 3,Chị ấy là một nữ sinh viên đầy năng lượng và sáng tạo.,1
 1,Các gói tài liệu giảng dạy có sẵn trên trang web của trường là rất hữu ích.,1
 2,Tôi thấy trường có nhiều phòng học tuyệt vời để học tập.,1
-1,Chương trình đào tạo rất phù hợp với nhu cầu thị trường lao động.,1
 2,The university's facilities are satisfactory.,1
-1,I feel like the curriculum provides a well-rounded education.,1
 0,Giảng viên rất có kinh nghiệm và đã giúp tôi có kết quả tốt trong bài kiểm tra.,1
 2,I am grateful for the technology available in the computer labs.,1
 1,I appreciate the emphasis placed on innovation and entrepreneurship in the curriculum.,1
@@ -198,7 +193,6 @@ topic,text,sentiment
 3,Anh bạn đồng nghiệp rất tận tâm với công việc.,1
 2,The facilities enable students to live a healthy lifestyle through access to fitness classes.,1
 2,The university provides students with appropriate and necessary facilities.,1
-3,Cô ấy có khả năng nghĩ logic và sắp xếp công việc một cách có kế hoạch.,1
 2,Các phòng làm việc của trường được bố trí rất hợp lý và tiện nghi.,1
 2,Các phòng học tại trường rộng và sạch sẽ.,1
 1,Phương pháp giảng dạy phù hợp với các đối tượng sinh viên khác nhau.,1
@@ -208,7 +202,6 @@ topic,text,sentiment
 1,Các buổi thảo luận giúp nâng cao tính sáng tạo và khả năng giải quyết vấn đề.,1
 3,Anh ta là một người có tinh thần cầu tiến và không ngừng hoàn thiện mình.,1
 0,Cô giáo đưa ra nhiều ví dụ cụ thể để giúp sinh viên hiểu bài học.,1
-3,Anh ta là một người có tinh thần cầu tiến và không ngừng hoàn thiện mình.,1
 1,Số lượng sinh viên trong các môn học có thể làm giảm chất lượng giảng dạy.,1
 3,Tôi rất thích sự thân thiện của chị ấy.,1
 2,The faculty offices are conveniently located for students to access.,1
@@ -223,7 +216,6 @@ topic,text,sentiment
 1,Các giảng viên phù hợp với yêu cầu chuyên môn của môn học mà họ giảng dạy.,1
 3,Bạn ấy là người có trách nhiệm và luôn đóng góp tích cực trong học tập.,1
 0,Giảng viên rất chuyên nghiệp và dành nhiều thời gian để giúp đỡ sinh viên.,1
-2,Trường có hệ thống thang máy tiện lợi phục vụ các sinh viên khó đi lại.,1
 1,Chương trình đào tạo hỗ trợ tốt cho sinh viên trong việc bổ sung kiến thức bên ngoài giảng đường,1
 3,Họ có một cái nhìn rất đa dạng về các chủ đề và có khả năng thích nghi tốt trong môi trường mới.,1
 0,Tôi thấy giảng viên rất hợp tác và dễ dàng tiếp cận.,1
@@ -259,7 +251,6 @@ topic,text,sentiment
 0,Giảng viên này sử dụng rất nhiều tài liệu đa dạng để giảng dạy chủ đề.,1
 0,Giảng viên nên chia sẻ kinh nghiệm và kiến thức thực tế của mình thường xuyên.,1
 0,Giảng viên giúp sinh viên cải thiện kỹ năng thực hành.,1
-2,Các phòng làm việc của trường được bố trí rất hợp lý và tiện nghi.,1
 2,Các khu vực trong trường được căn chỉnh rất tốt về ánh sáng và âm thanh.,1
 0,Giảng viên đôi khi rất khó tính và bắt bài học quá nghiêm.,1
 3,Có những sinh viên có kỹ năng giải quyết vấn đề tốt và đưa ra các phương án xử lý cho các tình huống khó khăn.,1
@@ -317,7 +308,6 @@ topic,text,sentiment
 3,Họ rất quan tâm đến các vấn đề xã hội và môi trường.,1
 3,Cô bạn này là một người tận tâm với nghề giáo.,1
 3,Cô ấy rất đam mê với công việc của mình.,1
-3,Bạn ấy là người có trách nhiệm và luôn đóng góp tích cực trong học tập.,1
 2,Học viện phát triển đa ngành nghề,1
 3,Bạn của tôi rất thích giúp đỡ người khác.,1
 3,Sinh viên này rất năng động và có khả năng giải trí tốt.,1
@@ -333,7 +323,6 @@ topic,text,sentiment
 1,"Cần đổi mới quy trình đánh giá, phê duyệt đề tài luận văn.",1
 2,"Dịch vụ hỗ trợ sống chất lượng, giúp sinh viên đáp ứng được nhu cầu cơ bản của cuộc sống hằng ngày.",1
 1,Chương trình học đảm bảo chất lượng giảng dạy.,1
-3,Anh ta là người cởi mở và thân thiện.,1
 3,Cậu ấy là con người rất năng động và sáng tạo.,1
 1,The curriculum aligns with current global trends and practices.,1
 1,Mức độ khó của bài kiểm tra phù hợp với mức độ đào tạo.,1
@@ -347,7 +336,6 @@ topic,text,sentiment
 1,Sự đánh giá công bằng và đúng đắn là điểm mạnh của chương trình.,1
 2,Trường cần điều chỉnh lại cơ cấu tổ chức để tăng tính hiệu quả trong việc quản lý.,1
 2,Các phòng thực hành trong trường đều được trang bị đầy đủ và tối ưu hóa cho việc thực tập.,1
-1,Bộ môn giảng dạy luôn tuyển chọn giáo viên giảng dạy tốt và có kinh nghiệm.,1
 1,Tôi cảm thấy chương trình học rất tốt cho việc phát triển sự nghiệp của mình.,1
 1,Nội dung giáo trình đa dạng và phong phú.,1
 2,Các phòng học được trang bị đầy đủ giáo cụ và tài liệu học tập.,1
@@ -355,7 +343,6 @@ topic,text,sentiment
 0,Thầy/cô đã đưa ra những thí dụ thực tế giúp cho sinh viên hiểu hơn.,1
 2,Trường có nhiều phòng đọc sách và phòng học chung cho sinh viên.,1
 3,Anh ta là người rất trung thực và tận tâm trong công việc.,1
-3,Họ rất thông minh và có năng lực tư duy cao.,1
 2,Tất cả các phòng thí nghiệm đều được trang bị đầy đủ và sẵn sàng cho việc nghiên cứu.,1
 0,Giảng viên có sự chuyên môn và phụ vụ tận tình để giúp đỡ sinh viên.,1
 0,Thầy cô cung cấp khả năng giải trí và giáo dục cho sinh viên đồng thời.,1
@@ -369,14 +356,12 @@ topic,text,sentiment
 1,Khung chương trình được thiết kế chặt chẽ và có hệ thống.,1
 3,Họ có tư duy sáng tạo và đam mê nghiên cứu.,1
 1,Các ngôn ngữ lập trình được giảng dạy rất chi tiết và dễ hiểu.,1
-1,Số lượng sinh viên trong các môn học có thể làm giảm chất lượng giảng dạy.,1
 2,Các phòng máy tính đều được trang bị máy tính mới và đủ số lượng cho tất cả sinh viên.,1
 1,Cần tạo ra môi trường học tập thú vị và phù hợp với khẩu vị của từng sinh viên,1
 2,Cơ sở học tập thích hợp cho các học viên tự học cũng như học nhóm.,1
 3,Họ luôn có thể giải đáp thắc mắc của sinh viên.,1
 2,The university has a program for exchanging students with other schools.,1
 0,Giảng viên này đã giúp tôi hiểu rõ hơn về chủ đề.,1
-0,Tôi rất kính trọng cách giảng dạy của giảng viên.,1
 1,"Overall, I feel that the curriculum adequately prepares students for their future careers.",1
 1,"Giáo trình có sự kết hợp các chương trình học thuật trong và ngoài trường học, giúp tôi có nhiều cơ hội học tập và thực hành.",1
 0,Tôi cảm thấy giảng viên của mình thường xuyên đưa ra các lời khuyên hữu ích và những giá trị đạo đức để giúp sinh viên phát triển nghề nghiệp của họ trong tương lai.,1
@@ -399,7 +384,6 @@ topic,text,sentiment
 1,Chương trình đào tạo ở đây khá chuẩn mực.,1
 2,Các phòng học của trường được trang bị đầy đủ máy tính để đáp ứng nhu cầu học tập.,1
 1,Chương trình đào tạo cần cập nhật để thích nghi với môi trường công nghệ cao,1
-3,Cô ấy thường xuyên tự cập nhật kiến thức để phát triển bản thân.,1
 0,Tôi thấy giảng viên của tôi rất tận tâm và chăm sóc sinh viên trong quá trình học tập.,1
 1,"Tôi thấy các chương trình đại học chuyên nghiệp, giáo trình giàu kinh nghiệm và môn học giúp tôi học tập nhiều hơn.",1
 3,Họ là một người rất hòa đồng và dễ gần.,1
@@ -414,9 +398,7 @@ topic,text,sentiment
 3,Họ rất quan tâm và giúp đỡ những người khác.,1
 3,Có những bạn thích dẫn chứng và nghiên cứu về những vấn đề khác.,1
 1,Các môn học trong chương trình đào tạo đều rất bổ ích và hầu như đều có liên quan đến ngành học của tôi,1
-3,Anh ấy cởi mở và thân thiện với mọi người.,1
 3,Tôi rất cảm kích sự giúp đỡ của anh ấy.,1
-2,Học viên gặp gỡ hàng đầu trong ngành.,1
 0,Giảng viên đưa ra những kỹ năng cơ bản giúp sinh viên tiếp thu kiến thức dễ hiểu hơn.,1
 0,Thầy cô luôn chuẩn bị tốt cho bài giảng và hướng dẫn cụ thể cho sinh viên trong từng bài giảng.,1
 3,Họ rất tập trung và đúng mục tiêu trong công việc.,1
@@ -424,7 +406,6 @@ topic,text,sentiment
 3,Anh ấy rất giỏi toán.,1
 3,Bạn của tôi được mọi người yêu mến.,1
 1,Chương trình đào tạo với nhiều tùy chọn kết hợp giữa các môn học.,1
-0,Thầy giảng dạy rất tỉ mỉ và sử dụng rất nhiều ví dụ minh họa.,1
 3,Cậu ấy luôn tỏ ra kiên định với quan điểm của mình.,1
 2,Điểm bán đồ ăn nhanh nằm trong trường cung cấp cho sinh viên các loại thức ăn đa dạng.,1
 0,Giảng viên rất thân thiện và hỗ trợ sinh viên.,1
@@ -449,7 +430,6 @@ topic,text,sentiment
 2,Cơ sở vật chất của trường rất tốt.,1
 3,Họ có tư duy vượt trội và làm việc thông minh.,1
 0,Tôi thấy giảng viên của tôi rất chuyên nghiệp và có kinh nghiệm chuyên môn cao trong lĩnh vực môn học.,1
-1,"Giáo trình có sự kết hợp các chương trình học thuật trong và ngoài trường học, giúp tôi có nhiều cơ hội học tập và thực hành.",1
 3,Chị ấy luôn là người tiên tiến và đưa ra các chương trình đào tạo mới.,1
 0,Tôi cảm thấy tự tin để thể hiện kiến thức của tôi trước giảng viên.,1
 0,Thầy/cô rất nhiệt tình hỗ trợ sinh viên giải đáp thắc mắc,1
@@ -468,19 +448,15 @@ topic,text,sentiment
 0,Thầy đánh giá công việc của sinh viên một cách công bằng và chính xác.,1
 0,Giảng viên rất kiên nhẫn và sẵn sàng giải đáp thắc mắc của sinh viên.,1
 2,The facilities offered by the university can effectively assist students.,1
-0,Thầy cô giảng bài một cách hài hước và đầy cảm hứng.,1
 1,Phương pháp giảng dạy hiệu quả.,1
 1,Các giáo viên tận tâm và nhiệt tình,1
 3,Một số sinh viên có khả năng diễn đạt tốt và thường được yêu cầu đứng lên giơi thiệu.,1
 3,Anh ấy là người rất có năng lực và sáng tạo.,1
 2,Lớp học được trang bị hệ thống điều khiển nhiệt độ giúp sinh viên cảm thấy thoải mái hơn khi học tập.,1
 3,Anh ấy là một người rất nhanh nhẹn và linh hoạt.,1
-1,Rất hài lòng với chương trình đào tạo,1
 3,Cậu ấy rất kiên trì và không bỏ cuộc dễ dàng.,1
-0,Giảng viên giúp sinh viên đạt được mục tiêu của học tập.,1
 1,Tất cả các lớp học đều được giáo viên giảng dạy và quản lý rất tốt.,1
 0,Thầy sử dụng nhiều phương pháp giảng dạy đa dạng để giúp sinh viên học tập tốt hơn.,1
-0,. Giảng viên đèn lòa cảm xúc khác nhau trong lớp học,1
 1,I feel like the curriculum provides a strong foundation for personal and professional success.,1
 3,Họ là một người rất thông cảm và empaty.,1
 0,Giảng viên này đôi lúc chỉ thích nói đến chuyện riêng của mình thay vì trong chuyên môn đó.,1
@@ -493,7 +469,6 @@ topic,text,sentiment
 2,Tôi thấy trường của mình rất đẹp và gần gũi với thiên nhiên.,1
 2,Phòng học của trường được trang bị bảng đen và bảng trắng giúp sinh viên dễ dàng theo dõi giảng bài.,1
 2,The facility is spacious and well-maintained.,1
-3,Họ có tinh thần nghệ thuật và đam mê với các hoạt động nghệ thuật.,1
 1,Bài giảng phải được thiết kế sao cho phù hợp với độ tuổi và năng lực của sinh viên,1
 1,Chương trình học đa dạng và phù hợp với đối tượng học sinh.,1
 1,Chương trình đào tạo cần tăng cường giáo dục về khả năng quản lý tài chính,1
@@ -508,12 +483,9 @@ topic,text,sentiment
 2,"The campus has excellent waste management practices, ensuring a safe and clean environment for all.",1
 2,Tỉ lệ sinh viên trong trường đúng nhu cầu,1
 2,Không gian học tập đẹp mắt,1
-1,Các ngôn ngữ lập trình được giảng dạy rất chi tiết và dễ hiểu.,1
 1,I appreciate the availability and accessibility of resources and support within the curriculum.,1
 1,The curriculum provides ample opportunities for research and independent study.,1
 2,"Các tiện ích tại trường đáp ứng nhu cầu của sinh viên như phòng học, thư viện, khu vv xanh và cơ sở vật chất tiện nghi.",1
-1,Những bài học của chương trình học rất thú vị và có tính thực tiễn cao.,1
-1,"Cần đổi mới quy trình đánh giá, phê duyệt đề tài luận văn.",1
 0,Giảng viên này rất tận tâm với công việc giảng dạy.,1
 3,"Họ đam mê vào các hoạt động văn hóa, thể thao và các hoạt động từ thiện.",1
 0,Thầy có tâm huyết với nghề giảng dạy và mong muốn giúp đỡ sinh viên vượt qua mọi khó khăn.,1
@@ -531,22 +503,17 @@ topic,text,sentiment
 0,Thầy luôn truyền đạt kiến thức một cách chuyên nghiệp.,1
 2,Các phòng họp được trang bị đầy đủ và hiện đại.,1
 0,Giảng viên có phương pháp dạy học đa dạng và phù hợp với từng đối tượng sinh viên.,1
-2,Khuôn viên của đại học rất rộng lớn và được bố trí hợp lý.,1
 2,Các phòng học đều có hệ thống âm thanh và đèn điện tiện lợi.,1
 1,Học phần giúp định hướng cho sinh viên về công việc và phát triển nghề nghiệp.,1
 3,Anh ấy là một người giữ sự cân bằng tốt giữa công việc và cuộc sống.,1
 0,Thầy cô giảng bài có tầm nhìn rất rõ ràng và đầy nhân văn.,1
 0,Tôi rất thích thầy giáo này vì thường xuyên chia sẻ những thông tin hữu ích liên quan đến chủ đề.,1
 3,Anh ấy luôn là người nghe thực tế và có trách nhiệm.,1
-3,Họ có tư duy vượt trội và làm việc thông minh.,1
 1,The curriculum fosters critical thinking and problem-solving skills.,1
-1,Chương trình đào tạo hỗ trợ tốt cho sinh viên trong việc bổ sung kiến thức bên ngoài giảng đường,1
 3,Anh ấy là người cầu tiến và không ngừng phát triển bản thân.,1
 3,Anh ta có khả năng sáng tạo cao.,1
 1,Tôi cảm thấy chương trình học của trường rất linh hoạt và giúp tôi đạt được mục tiêu của mình.,1
-1,Tôi cảm thấy chương trình đào tạo đáp ứng được nhu cầu của những sinh viên có trình độ khác nhau.,1
 1,The curriculum emphasizes experiential learning.,1
-2,The university's facilities are comprehensive and meet our needs.,1
 3,Nàng có sức ảnh hưởng và được nhiều người đánh giá cao.,1
 3,Một số sinh viên có tâm lý căng thẳng vì áp lực học tập và cần được hỗ trợ và thấu hiểu.,1
 1,Nội dung của chương trình đào tạo được thiết kế để đáp ứng nhu cầu của ngành công nghiệp.,1
@@ -576,17 +543,14 @@ topic,text,sentiment
 3,Trưởng bộ môn rất tận tâm và hoàn thành tốt nhiệm vụ giảng dạy.,1
 3,Tôi rất xúc động vì sự quan tâm của cô giáo.,1
 0,Thầy luôn đảm bảo rằng chúng tôi hiểu rõ và có khả năng thực hiện bài tập được giao.,1
-0,Sự động viên và hỗ trợ của thầy khiến chúng tôi cảm thấy động lực hơn.,1
 0,"Bài giảng được sắp xếp theo hệ thống, dễ hiểu và hợp lý.",1
 3,Họ đã hoàn thành tốt các nhiệm vụ cho đề tài đồ án.,1
 1,Chương trình đào tạo cung cấp cho tôi những công cụ và kỹ năng để phát triển sự nghiệp.,1
 2,The laboratories are well-equipped for scientific research.,1
-2,The university has a good range of research facilities.,1
 3,Mặc dù cậu ấy chưa có nhiều kinh nghiệm nhưng luôn học hỏi và cố gắng cải thiện.,1
 3,Anh ấy có tính cách thực tế và luôn đưa ra những phương án thực tiễn để giải quyết.,1
 2,The university provides resources for athletic training.,1
 2,The campus offers good facilities that are useful for students.,1
-2,"The university has a good emphasis on academic research, providing lab facilities for students' research.",1
 1,The curriculum is well-structured and comprehensive.,1
 1,Giảng viên luôn sẵn sàng giúp đỡ sinh viên trong việc học tập và tìm kiếm cơ hội việc làm.,1
 0,Tôi cảm thấy giảng viên này sẵn sàng chia sẻ kiến thức và kinh nghiệm cá nhân với sinh viên.,1
@@ -598,10 +562,8 @@ topic,text,sentiment
 0,Giảng viên đã truyền đạt kiến thức rất rõ ràng.,1
 0,Lớp học được tổ chức đầy đủ công cụ và thiết bị giúp sinh viên phát triển kỹ năng.,1
 3,Họ có sức sống mãnh liệt và tinh thần đồng đội.,1
-3,Anh ấy có tâm lý học rất tốt và luôn lắng nghe người khác.,1
 3,Anh ấy là một người rất tập trung và có khả năng quản lý thời gian tốt.,1
 0,Giảng viên tạo ra một môi trường động lực cho sinh viên.,1
-0,Giảng viên rất dễ tiếp cận và hỗ trợ sinh viên rất nhiều.,1
 1,Giáo trình đang được sử dụng có tính ứng dụng cao trong thực tế.,1
 1,Chương trình học được thiết kế trực quan và dễ hiểu.,1
 3,Cô ấy có khả năng phát triển mối quan hệ xã hội và xây dựng mạng lưới liên kết.,1
@@ -621,12 +583,10 @@ topic,text,sentiment
 3,Cậu bạn này hài hước lắm.,1
 1,I appreciate the opportunity to take electives outside of my major.,1
 2,"Các phòng học được trang bị hệ thống âm thanh, ánh sáng tiên tiến giúp cho giảng viên và sinh viên dễ dàng giao lưu.",1
-1,Các sinh viên được khuyến khích phát triển kỹ năng tự học.,1
 2,Nhà ăn của trường có thực đơn đa dạng và giá cả hợp lý.,1
 0,Giảng viên đưa ra những kinh nghiệm thực tế và sinh động giúp sinh viên học tập hiệu quả hơn.,1
 1,Chương trình học đáp ứng đầy đủ thông tin về khía cạnh chuyên môn.,1
 2,Khuôn viên trường đẹp và sạch sẽ.,1
-0,Thầy bày tỏ sự sống động và thăng hoa với các chủ đề học thuật.,1
 0,Giảng viên này rất trung thực và chi tiết trong việc giáo dục sinh viên.,1
 1,Các môn học được thiết kế để giúp sinh viên phát triển các kĩ năng cần thiết cho công việc hiện nay.,1
 1,Nhiều hoạt động ngoại khóa đa dạng.,1
@@ -647,7 +607,6 @@ topic,text,sentiment
 3,Anh ta là người rất năng động và sáng tạo.,1
 1,The curriculum prepares us well for real-world experiences and situations.,1
 3,Anh ấy là một người rất vui tính và dễ gần.,1
-3,Anh ấy luôn trang bị kiến thức mới và sẵn sàng chia sẻ với mọi người.,1
 1,The curriculum encourages students to take ownership of their learning and progress.,1
 0,Thầy giảng dạy rất hài hước và vui nhộn.,1
 1,Giáo trình cung cấp cho sinh viên điều kiện khai thác tiềm năng sáng tạo của mình.,1
@@ -655,7 +614,6 @@ topic,text,sentiment
 1,I like how the curriculum emphasizes teamwork and communication skills.,1
 3,Một số sinh viên dễ bị phân tâm và không tập trung được trong lớp học.,1
 1,Trường được đánh giá rất cao với các dự án nghiên cứu và giải pháp kinh doanh cung cấp cho sinh viên.,1
-3,Họ có khả năng tự quản lý và tự động hóa công việc tốt hơn các bạn khác.,1
 1,Các lớp học thường có sự đa dạng phong phú.,1
 3,Họ là người thân thiện và dễ gần.,1
 2,Trường đại học này có nhiều chương trình đào tạo khác nhau để sinh viên có thể lựa chọn.,1
@@ -666,7 +624,6 @@ topic,text,sentiment
 1,The curriculum encourages collaboration and teamwork.,1
 0,Giảng viên rất cẩn thận trong việc đánh giá kết quả học sinh.,1
 1,Chương trình giúp tôi hiểu rõ hơn về mục tiêu và cách thức phát triển nghề nghiệp của bản thân.,1
-2,"Điều kiện sống của ký túc xá rất tốt, an toàn, và sạch sẽ.",1
 1,Nội dung giảng dạy được cập nhật thường xuyên.,1
 0,Giảng viên rất tận tâm giải đáp thắc mắc của sinh viên.,1
 0,Tôi thấy giảng viên của tôi rất nghiêm túc và tập trung khi giảng dạy môn học của mình.,1
@@ -679,11 +636,8 @@ topic,text,sentiment
 1,Chương trình học rất tốt để chuẩn bị cho tương lai nghề nghiệp của tôi.,1
 1,Chương trình học đưa ra những câu hỏi và bài tập thực tế rất ấn tượng.,1
 1,The curriculum encourages active learning.,1
-3,Bạn của tôi rất chịu khó và kiên trì.,1
 3,Bạn của tôi rất lạc quan và tươi vui.,1
-3,Họ đã hoàn thành tốt các nhiệm vụ cho đề tài đồ án.,1
 2,Trường cung cấp đầy đủ dịch vụ vệ sinh vệ sinh cho sinh viên.,1
-2,"Các tiện ích tại trường đáp ứng nhu cầu của sinh viên như phòng học, thư viện, khu vv xanh và cơ sở vật chất tiện nghi.",1
 0,Tôi thích giảng viên này vì cô ấy luôn đưa ra một cách tiếp cận đối với khi sinh viên không hiểu được.,1
 0,Thầy là một người rất đáng kính và tận tâm với công việc giảng dạy của mình.,1
 1,The curriculum does a good job of combining theoretical and practical knowledge.,1
@@ -692,7 +646,6 @@ topic,text,sentiment
 0,Thầy cô giảng bài lý thuyết và thực tiễn một cách cân bằng phù hợp.,1
 2,Trường cung cấp rất nhiều khoá học nghề để giúp sinh viên phát triển các kỹ năng thực tiễn.,1
 1,Tôi cảm thấy hài lòng với nội dung chương trình đào tạo.,1
-1,Chương trình đào tạo cung cấp cho tôi những công cụ và kỹ năng để phát triển sự nghiệp.,1
 2,Giáo trình tiên tiến,1
 1,Bộ giáo trình phát triển được để đáp ứng nhu cầu của các công ty hàng đầu trong ngành.,1
 2,"Khu vực cửa hàng sách, văn phòng phẩm được trang bị đầy đủ, giá cả hợp lý giúp cho sinh viên tiết kiệm chi phí.",1
@@ -702,10 +655,8 @@ topic,text,sentiment
 2,Trường có môi trường giáo dục tiên tiến và giúp sinh viên đạt được một tương lai tốt đẹp.,1
 1,Kiến thức được trang bị đầy đủ.,1
 0,Tôi đánh giá rất cao phong cách giảng dạy của giảng viên này.,1
-0,Giảng viên này rất nhiệt tình và giúp đỡ học sinh hoàn tất các bài tập và dự án.,1
 3,Chị ấy có khả năng đưa ra các quyết định chính xác và hiệu quả.,1
 0,Thầy tạo ra những bài giảng song song và các hoạt động liên quan đến thực tế để giúp sinh viên học tập hiệu quả hơn.,1
-3,Một số sinh viên dễ bị phân tâm và không tập trung được trong lớp học.,1
 2,Nhân viên xây dựng và bảo trì hỗ trợ rất nhiệt tình và chu đáo.,1
 1,The curriculum fosters critical thinking skills.,1
 3,Cô ấy luôn trân trọng ý kiến của người khác.,1
@@ -713,17 +664,14 @@ topic,text,sentiment
 0,. Thầy/cô mang lại hy vọng và động lực cho sinh viên làm việc tốt hơn.,1
 1,I found the curriculum to be well-structured and informative.,1
 0,Cô giáo hướng dẫn sinh viên cách giải quyết vấn đề một cách khoa học và tư duy phản biện.,1
-2,Các phòng thí nghiệm của trường rất an toàn và có thực đơn đa dạng.,1
 2,Khuôn viên trường được bảo quản sạch sẽ và xanh tươi,1
 0,. Giảng viên đưa ra các giải pháp để giúp sinh viên vượt qua khó khăn trong học tập,1
-0,Giảng viên rất thông minh và có tầm nhìn rộng lớn.,1
 3,Anh ta là người luôn giữ được sự tập trung khi làm việc.,1
 1,Môn học được giảng dạy một cách trực quan và sinh động.,1
 0,Tôi cảm thấy giảng viên của mình rất chuyên nghiệp và tỉ mẩn trong công việc.,1
 2,Thư viện trường rộng và có nhiều tài liệu cần thiết cho học tập.,1
 2,Các khu vực ẩm thực của trường đa dạng và phong phú với nhiều loại món ăn khác nhau.,1
 1,Những khóa học đào tạo nghề nghiệp được đưa vào giáo trình rất hữu ích cho sinh viên.,1
-3,Bạn của tôi rất đam mê và nhiệt huyết.,1
 0,Lớp học được tổ chức rất chuyên nghiệp.,1
 2,The staff responsible for maintaining the facilities are friendly and helpful.,1
 2,The university offers support services for students with disabilities.,1
@@ -737,7 +685,6 @@ topic,text,sentiment
 2,Các phòng học của trường được trang bị bảng trắng và máy chiếu rất tiện lợi cho việc giảng dạy và học tập.,1
 1,Các môn học được tổ chức rất khoa học và có tính thực tiễn cao.,1
 0,Giảng viên nói chuyện rõ ràng và dễ hiểu.,1
-1,Việc đo lường kết quả học tập chưa tốt và không nói lên được năng lực của sinh viên.,1
 3,Cô bạn này rất cởi mở và dễ thương.,1
 1,Chương trình đào tạo cần đảm bảo sự linh hoạt và có thể điều chỉnh khi có thay đổi.,1
 3,Cô ấy là người có năng lực quản lý rất tốt.,1
@@ -747,8 +694,6 @@ topic,text,sentiment
 0,Giảng viên này rất giỏi về chuyên môn và cách phân tích.,1
 3,Có những bạn có khả năng chủ động và tự giác đưa ra phương án giải quyết cho các vấn đề trong lớp.,1
 1,Chương trình học đầy đủ và mang tính thực tiễn cao.,1
-0,Thầy giảng dạy rất sáng tạo và đa dạng trong phương pháp giảng dạy.,1
-1,Tôi thích cách trường áp dụng phương pháp dạy học đa dạng.,1
 2,Trường đảm bảo các tiêu chuẩn an toàn vệ sinh tối ưu cho sinh viên.,1
 3,Anh ta là một lãnh đạo tốt.,1
 3,Anh ấy có tính cách linh hoạt và dễ thích nghi với môi trường mới.,1
@@ -761,36 +706,29 @@ topic,text,sentiment
 1,Giáo viên sử dụng phương pháp giảng dạy hiệu quả.,1
 3,Họ là một người rất giàu tình cảm và yêu đời.,1
 3,Anh ta là một người nghiêm túc và chuyên tâm vào công việc.,1
-0,"Giảng viên có thái độ hướng dẫn rất tốt, giúp tôi hiểu được nhiều hơn về môn học của mình.",1
 2,The science labs are well-equipped for experiments.,1
 2,Thực đơn của căn tin đa dạng và đảm bảo vệ sinh an toàn thực phẩm.,1
 3,Cô giảng viên rất nhiệt tình và thấu hiểu học sinh.,1
 0,Họ luôn dành thời gian để nghe ý kiến của sinh viên.,1
 0,Tôi thấy giảng viên của tôi khá suy nghĩ và có tinh thần nghiêm túc trong giảng dạy.,1
 3,Họ có tinh thần trách nhiệm và tỉ mỉ trong công việc.,1
-0,Thầy đánh giá sinh viên bằng cách công bằng và mang tính xây dựng.,1
 1,Tài khoản toàn diện của sinh viên với đầy đủ thông tin về khóa học.,1
 1,Các giáo trình phản ánh tốt những thay đổi trong ngành nghề và hướng dẫn để chuẩn bị cho nó.,1
-3,Họ rất quan tâm và giúp đỡ những người khác.,1
 0,Giảng viên là một người hướng dẫn giỏi.,1
 3,Nhiều bạn có kỹ năng học tập tốt và đạt được nhiều kết quả cao trong các bài kiểm tra và đánh giá.,1
 3,Cô ấy có nhiều kinh nghiệm trong ngành của mình.,1
 0,Giảng viên có thái độ tốt và luôn lắng nghe ý kiến của sinh viên.,1
 1,"Học phần không quá khó hoặc đơn giản, tuy nhiên đòi hỏi sự chăm chỉ và cố gắng để đạt điểm cao.",1
 3,Cô ấy là một người học giỏi và luôn cố gắng hết sức mình.,1
-0,Họ đánh giá công bằng và trung thực.,1
 0,Thầy cô giảng bài rất chi tiết và dễ hiểu.,1
 0,Giảng viên này rất dễ tiếp cận và truyền đạt kiến thức một cách rõ ràng.,1
-2,Trường đảm bảo các tiêu chuẩn an toàn vệ sinh tối ưu cho sinh viên.,1
 0,. Thầy/cô luôn kiểm tra sự tiến bộ của sinh viên trong toàn bộ quá trình học tập,1
 0,Giảng viên khuyến khích sinh viên tìm hiểu thêm về chủ đề chính của mình.,1
 0,Giáo viên rất tận tâm và cẩn trọng với giai đoạn đầu của sinh viên.,1
-1,Hệ thống đánh giá rất công bằng và cởi mở.,1
 1,Tôi rất thích số lượng tín chỉ của các môn học trong chương trình đào tạo.,1
 1,Cần tạo điều kiện cho sinh viên tiếp cận với các dự án nghiên cứu khoa học.,1
 2,Trường có các khu vực chờ đợi và phục vụ khách rất tiện lợi.,1
 0,Giảng viên đã giúp tôi hiểu hơn về các khía cạnh khác của môn học.,1
-0,"Thầy có kiến thức rộng và đa dạng, và luôn cập nhật kiến thức mới.",1
 0,. Thầy/cô thường xuyên cung cấp phản hồi để giúp sinh viên cải thiện học tập hơn,1
 2,"Các khuôn viên và phòng học đều được bố trí đèn LED mềm, tạo cảm giác dễ chịu khi học tập.",1
 0,Giảng viên tạo ra một môi trường học tập đầy sáng tạo.,1
@@ -801,14 +739,12 @@ topic,text,sentiment
 3,Họ rất kiên trì và làm việc thông minh.,1
 2,Đội ngũ nhân viên của trường rất thân thiện và chu đáo.,1
 1,The curriculum provides a platform for students to engage in social and environmental advocacy.,1
-0,. Giảng viên có khả năng giảm áp lực học tập của sinh viên,1
 0,. Thầy/cô xây dựng mối quan hệ tốt đẹp giữa sinh viên và giảng viên,1
 3,Cô giáo của tôi rất chú trọng vào giáo dục toàn diện cho học sinh.,1
 3,Họ rất thông minh và cùng lúc rất thực tế.,1
 0,Thầy khai thác thế mạnh của từng học sinh để giúp đỡ tối đa.,1
 2,Phòng thí nghiệm của trường rất tiện nghi và hiện đại.,1
 1,"Trong suốt quá trình học tập, sinh viên được hỗ trợ bởi các trợ lý giảng dạy.",1
-0,Cô giáo giao tiếp bằng cách tương tác với sinh viên.,1
 3,Bạn của em là người cởi mở và dễ chịu.,1
 0,Thầy cô này giao bài tập quá nhiều trong 1 tuần.,1
 3,Họ học tập có phương pháp và có thể là người giúp đỡ tốt cho những người khác trong lớp.,1
@@ -818,29 +754,23 @@ topic,text,sentiment
 2,Khuôn viên trường được bảo quản sạch sẽ và luôn được cải tiến để đáp ứng nhu cầu sinh viên học tập,1
 1,Trường giúp tôi hiểu rõ hơn về các chính sách và pháp luật liên quan đến ngành học của mình.,1
 0,Giảng viên này giúp tôi hiểu rõ hơn về các khái niệm và lý thuyết phức tạp.,1
-1,The curriculum provides a platform for students to engage in social and environmental advocacy.,1
 0,Giảng viên của tôi thường xuyên đưa ra các ví dụ và trường hợp thực tế để giúp sinh viên hiểu rõ hơn về môn học của mình.,1
-3,Một số sinh viên đòi hỏi quá cao về chất lượng công việc và thường chịu áp lực trong lớp học.,1
 2,"Khu vực lễ tân và giám sát an ninh đảm bảo an toàn cho sinh viên, giảng viên.",1
 1,I am impressed by the knowledgeable and experienced instructors within the curriculum.,1
 3,Họ luôn chủ động trong công việc và có khả năng tổ chức công việc tốt.,1
 3,Cô ấy có tính cách được đánh giá là phổ biến và độc lập.,1
 2,The cafeteria has plenty of options and is reasonably priced.,1
 0,Giảng viên tạo điều kiện cho sinh viên tiếp cận kiến thức một cách dễ dàng.,1
-2,Có trang thiết bị và dịch vụ mượt mà để đảm bảo an ninh trong trường.,1
 2,Tôi cảm thấy an toàn và thoải mái khi sử dụng những cơ sở của trường.,1
 0,Giảng viên rất tốt và đóng góp tích cực cho sự phát triển của sinh viên.,1
 0,Thầy giảng dạy rất linh hoạt và sáng tạo.,1
 0,Giảng viên luôn tạo điều kiện cho sinh viên thể hiện bản thân.,1
 2,Phòng học của trường rất thoáng đãng và sạch sẽ.,1
 2,Các khu vực để giải trí trong trường rất đầy đủ và thuận tiện.,1
-1,"Học phần tạo điều kiện cho sinh viên rèn luyện kỹ năng giao tiếp, hợp tác và làm việc nhóm.",1
 0,Thầy rất thấu hiểu và đồng cảm với sinh viên.,1
 3,Bạn của tôi rất giỏi tiếng Anh.,1
-3,Họ là một người rất hòa đồng và dễ gần.,1
 0,Thầy giảng dạy rất chắc chắn và không bao giờ gây bất kỳ sự nhầm lẫn nào.,1
 3,Họ học rất chăm chỉ và đạt được nhiều thành tích.,1
-3,Anh ấy luôn có tinh thần hợp tác và tôn trọng những người xung quanh.,1
 0,Giảng viên của tôi rất đồng cảm và cởi mở với ý kiến phản hồi của sinh viên.,1
 3,Cậu ấy có khả năng giải quyết mâu thuẩn trong nhóm.,1
 1,Tôi nghĩ rằng chương trình đào tạo có thể bổ sung thêm các môn học về tiếng Anh và kỹ năng viết để giúp sinh viên tự tin hơn khi làm việc trong môi trường quốc tế,1
@@ -879,10 +809,8 @@ topic,text,sentiment
 2,Có không gian riêng tư cho sinh viên để học tập và nghiên cứu độc lập,1
 0,Giảng viên dùng giọng nói rất thuyết phục và có thể truyền tải thông điệp đến sinh viên.,1
 1,"Các môn học khác nhau nhưng vẫn liên quan đến nhau, tạo nên một hệ thống học thuật hoàn chỉnh",1
-2,The language lab is helpful for language learning.,1
 3,Họ là một người rất sáng suốt và khôn ngoan.,1
 2,Hệ thống máy lạnh và phòng máy của trường cấp độ cao giúp sinh viên học tập tập trung hơn.,1
-0,Giảng viên rất dễ tiếp cận và thân thiện với sinh viên.,1
 3,Họ có tinh thần đồng đội và quan tâm đến thành viên trong nhóm.,1
 3,Cậu bạn này rất thẳng thắn và chân thành.,1
 0,Giảng viên này cho học sinh thấu hiểu khá hơn về chuyên môn mà mình đang học.,1
@@ -894,7 +822,6 @@ topic,text,sentiment
 3,Cô bạn này rất chân thành và tàn tâm.,1
 1,"Chương trình đào tạo có tính chuyên môn cao, phù hợp cho các sinh viên muốn theo đuổi sự nghiệp ở lĩnh vực đó.",1
 1,Chương trình học này của trường rất thú vị và hấp dẫn.,1
-3,Cô ấy luôn luôn có tinh thần trách nhiệm và thực hiện công việc một cách đúng đắn.,1
 0,"Giảng viên đưa ra những thí dụ cụ thể, giúp sinh viên tiếp cận và hiểu rõ hơn kiến thức.",1
 2,Các chỗ để ngồi trong trường rất thoải mái và thuận tiện.,1
 2,Trang thiết bị ở khuôn viên của đại học đa dạng và phong phú.,1
@@ -902,7 +829,6 @@ topic,text,sentiment
 2,Các khu vực xanh của trường được giữ vệ sinh và cắt tỉa đều đặn.,1
 1,Chương trình học giúp tôi có cơ hội gặp gỡ các giảng viên và sinh viên khác để học hỏi và phát triển.,1
 1,Cảm giác thoải mái và khám phá được một môi trường đào tạo mới.,1
-2,"Khu vực lễ tân và giám sát an ninh đảm bảo an toàn cho sinh viên, giảng viên.",1
 3,Anh ấy là một người có khả năng quản lý và phát triển các dự án hiệu quả.,1
 2,Hệ thống điều hòa không khí của trường hoạt động tốt và hiệu quả.,1
 0,Giảng viên dành thời gian để nghe và giải đáp câu hỏi của sinh viên.,1
@@ -914,14 +840,10 @@ topic,text,sentiment
 0,Thầy giảng dạy sáng tạo và đầy ứng dụng thực tiễn.,1
 1,Trường định hướng rất tốt cho sinh viên và đưa ra các lựa chọn hợp lý.,1
 1,"Giáo trình học thuật chưa được cung cấp đầy đủ, cần phải tìm kiếm tự học.",1
-1,The curriculum prepares students for various career paths and opportunities.,1
 1,I feel like the curriculum prepares us well for global citizenship and leadership roles.,1
-0,Thầy tạo ra những bài giảng song song và các hoạt động liên quan đến thực tế để giúp sinh viên học tập hiệu quả hơn.,1
-0,Giảng viên đưa ra những gợi ý để sinh viên cải thiện bản thân.,1
 3,Họ rất yêu thích và đam mê thể thao.,1
 3,Người này là một người chân thành và có sức ảnh hưởng lớn đối với người khác.,1
 1,Các môn học rất cần thiết và hữu ích cho cuộc sống hàng ngày của sinh viên.,1
-1,Hình thức đề án thực tập không phù hợp với nhu cầu thực tế.,1
 3,Bạn của em là người có khả năng giao tiếp tốt với nhiều người.,1
 2,Phòng chờ đợi có đầy đủ ghế ngồi thoải mái,1
 0,Giáo viên dạy rất rõ ràng và chi tiết.,1
@@ -931,17 +853,14 @@ topic,text,sentiment
 0,Giảng viên này luôn mang lại nhiều niềm đam mê cho học sinh.,1
 0,Tôi hy vọng có thể có thêm thời gian học với giảng viên này trong tương lai.,1
 0,Tôi cảm thấy giáo viên của mình không rõ ràng khi giảng dạy một số khái niệm trong môn học.,1
-3,Anh ấy thật sự là một người gặp may trong cuộc sống.,1
 0,Thầy là một giảng viên đầy nhiệt huyết và đam mê.,1
 3,Bạn đồng nghiệp rất thân thiện và luôn giúp đỡ mọi người.,1
 2,Trường có nhiều khu vực sinh hoạt và giải trí cho sinh viên.,1
 0,Thầy thường tạo ra môi trường học hỏi thoải mái cho sinh viên.,1
-1,Tôi hài lòng với cách tạo điều kiện cho sinh viên để truy cập và sử dụng tài liệu học tập trực tuyến.,1
 1,I appreciate the opportunity to engage in interdisciplinary studies within the curriculum.,1
 2,Môi trường học tập trong trường rất khuyến khích việc học tập tự do.,1
 3,Họ rất quan tâm đến những người khác và hoàn toàn có thể dựa vào họ khi cần sự giúp đỡ.,1
 2,Các cơ sở vật chất tại đây khá đầy đủ.,1
-3,Họ có tầm nhìn xa và biết cách sử dụng kiến thức của mình để giải quyết vấn đề.,1
 3,Anh ta là người rất chủ động trong công việc.,1
 2,"Tôi có thể tìm thấy nhiều tiện nghi khác nhau, như phòng tập thể dục và các loại tài liệu thư viện...",1
 3,Anh ấy rất cởi mở và dễ tiếp cận.,1
@@ -955,31 +874,23 @@ topic,text,sentiment
 3,Anh ấy đánh giá cao sự chia sẻ kiến thức và kinh nghiệm của người khác.,1
 2,Tôi cảm thấy thoải mái và an toàn khi sử dụng phòng máy tính của trường.,1
 0,"Lớp học được cơ cấu theo từng chủ đề, giúp học viên tiếp cận các kiến thức cơ bản và sau đó tiến đến các bài học khó hơn.",1
-3,Cô giáo của tôi luôn sáng tạo trong cách giảng dạy.,1
 2,Cửa hàng tiện lợi của trường cung cấp đầy đủ các dịch vụ và hàng hóa cần thiết.,1
 3,Cô giảng viên này luôn sáng tạo và có những giảng dạy độc đáo.,1
 1,"Tôi mong muốn chương trình đào tạo giúp sinh viên phát triển kỹ năng sống và tự học, không chỉ là kiến thức chuyên ngành",1
 0,. Thầy/cô áp dụng phương pháp đánh giá công bằng và chính xác.,1
 1,Có nhiều cơ hội tham gia các hoạt động tình nguyện và các hoạt động xã hội hữu ích.,1
 1,The curriculum prepares students well for future careers.,1
-2,The university has a program for exchanging students with other schools.,1
 1,Chương trình học cần đưa ra phương pháp giảng dạy mới để nâng cao hiệu quả học tập.,1
 2,Trường đại học này có khu vực giúp sinh viên rèn luyện thể chất và sức khỏe như sân chơi thể thao và phòng gym.,1
 3,Họ đã thực hiện tốt bài thuyết trình và đã giải thích rất rõ ràng.,1
 1,I appreciate the emphasis on research and inquiry in the curriculum.,1
-1,Nhận được sự hỗ trợ từ nhà trường khi có khó khăn trong học tập.,1
-1,I appreciate the opportunity to engage in interdisciplinary studies within the curriculum.,1
 2,The university's admissions facility is helpful and accommodating.,1
-0,Tôi cảm thấy giảng viên của mình không cập nhật được nhiều những kiến thức mới nhất trong lĩnh vực môn học.,1
-3,Bạn của tôi rất thực tế và có tầm nhìn rộng.,1
 0,Giảng viên cần cung cấp thông tin về các cơ hội việc làm sau khi tốt nghiệp.,1
 2,"Trường có thư viện số để giúp sinh viên thuận tiện tìm kiếm, tra cứu tài liệu",1
 2,Trường có khoa học đầy đủ để mang đến cho sinh viên cơ hội thực hành và nghiên cứu.,1
-0,Giảng viên rất tốt và đóng góp tích cực cho sự phát triển của sinh viên.,1
 2,The university has quality facilities for students.,1
 0,Giảng viên giúp sinh viên tự tin hơn khi giải quyết các vấn đề.,1
 1,Chương trình đào tạo bao gồm cả kỹ năng mềm.,1
-0,Thầy cô giảng bài rất có kinh nghiệm và sáng tạo.,1
 3,Anh ấy có kỹ năng danh giá trong công việc.,1
 0,Giảng viên này giúp tôi hiểu rõ hơn về các quy trình công việc và cập nhật những kiến thức mới nhất.,1
 3,Cô ấy là một người rất thân thiện và dễ thương với mọi người trong lớp.,1
@@ -987,37 +898,29 @@ topic,text,sentiment
 0,Thầy đảm bảo sinh viên có một môi trường học tập an toàn và lành mạnh.,1
 1,"Tôi mong muốn chương trình đào tạo có thể bổ sung thêm các môn học về kỹ năng mềm, giao tiếp, lãnh đạo, v.v.",1
 0,Giảng viên thường tổ chức các buổi thảo luận và đối thoại sôi nổi.,1
-3,Mặc dù cậu ấy chưa có nhiều kinh nghiệm nhưng luôn học hỏi và cố gắng cải thiện.,1
 3,Họ là người rất tuyệt vời để làm việc trong nhóm.,1
 1,Sinh viên không được tham gia các hoạt động ngoại khóa thường xuyên.,1
 2,Các khu vực wifi công cộng rộng và tiện ích.,1
 1,Giảng viên rất hỗ trợ và dễ tiếp cận.,1
 0,Thầy/cô giảng nói chuyện rất rõ ràng và có thái độ tốt đối với học viên.,1
 3,Cô ấy tập trung và cẩn thận trong công việc của mình.,1
-3,Họ rất tập trung và đúng mục tiêu trong công việc.,1
 3,Họ là một người rất đáng kính và tử tế.,1
 2,The bathrooms are always clean and well-stocked.,1
 3,Em nghĩ bạn của mình là một người rất tài năng trong lĩnh vực âm nhạc.,1
-2,Các phòng thực hành trong trường đều được trang bị đầy đủ và tối ưu hóa cho việc thực tập.,1
 3,Nàng là một người rất chân thành và luôn giúp đỡ mọi người trong nhóm.,1
 0,Giảng viên rất chuyên nghiệp và truyền cảm hứng cho sinh viên.,1
 2,"Đội ngũ giảng viên của trường còn ít ỏi, cần bổ sung thêm để đáp ứng yêu cầu của sinh viên.",1
-1,Nấm là chương trình học tốt nhất mà tôi từng được tham gia.,1
 2,Hỗ trợ tâm lý sinh viên tốt,1
 0,Thầy luôn tạo khí thế học tập sôi động và tích cực cho sinh viên.,1
-3,Cậu ấy có tài năng về sáng tạo và thiết kế đồ họa.,1
 0,Tôi cảm thấy rất tự tin khi thầy giáo giảng dạy bởi anh ta có rất nhiều kiến thức về lĩnh vực giảng dạy.,1
 2,The university has a volunteer program for giving back to the community.,1
-2,"Đội ngũ giảng viên của trường còn ít ỏi, cần bổ sung thêm để đáp ứng yêu cầu của sinh viên.",1
 1,Được cung cấp tài liệu học tập đầy đủ.,1
 2,The university's facilities are up to standard.,1
 2,Các khu vực tập thể dục và thể thao trong trường rất đa dạng và thuận tiện.,1
-3,Tôi rất xúc động vì sự quan tâm của cô giáo.,1
 2,Phòng học được thiết kế đặc biệt để học nhóm giúp sinh viên làm việc với nhau dễ dàng.,1
 2,Phòng máy tính của trường rất tiện lợi và đầy đủ trang thiết bị.,1
 1,Các giảng viên có kiến thức chuyên sâu ở lĩnh vực mình giảng dạy.,1
 3,Anh ấy là người rất thân thiện và vui vẻ.,1
-2,Trường đảm bảo tài chính và hỗ trợ học bổng cho sinh viên có hoàn cảnh khó khăn.,1
 1,Nội dung chương trình học không những hiện đại mà còn rất phù hợp với xu hướng phát triển của ngành.,1
 0,Thầy cô giải thích bài giảng rất chi tiết để sinh viên hiểu rõ vấn đề.,1
 2,Các trang thiết bị y tế trong trường rất tốt và đảm bảo sức khỏe của sinh viên.,1
@@ -1026,17 +929,14 @@ topic,text,sentiment
 1,Các tài liệu học tập được cập nhật liên tục để đáp ứng nhu cầu của sinh viên.,1
 2,"The classrooms are equipped with whiteboards and projectors, allowing for effective learning.",1
 3,Họ có sự nhạy cảm và quan tâm đến các vấn đề xã hội.,1
-0,Giảng viên này rất trung thực và chi tiết trong việc giáo dục sinh viên.,1
 0,"Thầy cô này dạy rất chuyên nghiệp, tôn trọng học sinh và luôn giúp đỡ khi cần.",1
 2,Trường có đội ngũ giáo viên tâm huyết và luôn tích cực đổi mới phương pháp giảng dạy.,1
 2,Khu vực sinh hoạt của trường cũng rất phong phú và đa dạng.,1
 3,Một số bạn rất chủ động trong việc tìm hiểu kiến thức mới bên ngoài lớp học.,1
-3,Cô ấy có sự đam mê và nhiệt huyết với công việc.,1
 3,Chị ấy có khả năng giải quyết các vấn đề khó khăn trong công việc.,1
 1,Bộ môn giảng dạy rất kiên nhẫn và chu đáo trong việc hỗ trợ sinh viên.,1
 2,"Trường có các phòng nghỉ, phòng giặt đồ rất tiện lợi cho sinh viên.",1
 3,Tôi thấy anh ta khá kín đáo và thường giữ cho mình.,1
-2,"Các phòng họp có khả năng đáp ứng nhu cầu của các hội nghị, hội thảo.",1
 2,Trường đại học của tôi có nhiều khu vực quảng trường tập trung giúp sinh viên dễ dàng giao lưu và kết nối với nhau.,1
 1,Nội dung giảng dạy không chỉ tập trung vào lý thuyết mà còn trải nghiệm thực tiễn.,1
 2,Đội ngũ bảo vệ thân thiện và chuyên nghiệp.,1
@@ -1049,32 +949,23 @@ topic,text,sentiment
 3,Nàng có sự kiên trì và chịu đựng với những khó khăn trong cuộc sống.,1
 1,"Học phần đòi hỏi kỹ năng phân tích và giải quyết vấn đề, giúp sinh viên có kỹ năng quan trọng trong công việc.",1
 2,Khu vực để xe của trường rộng rãi và tiện lợi.,1
-1,Điểm mạnh của chương trình đào tạo là có nhiều phương pháp học tập đa dạng.,1
-2,Các dịch vụ y tế trong trường rất tốt và hiệu quả.,1
-0,Tôi thích giáo viên này vì ông ấy thường xuyên tạo ra các hoạt động giải trí để làm cho bài giảng thêm sinh động.,1
 3,Bạn đồng nghiệp rất thân thiện và dễ gần.,1
-2,Khuôn viên trường được xây dựng rất đẹp và thoáng mát.,1
 0,Giảng viên luôn kích thích sinh viên để học tập chủ động hơn.,1
 3,Họ luôn tận tâm và có trách nhiệm trong việc thực hiện công việc của mình.,1
 1,Môn học trong chương trình đào tạo hỗ trợ tôi trong quá trình tìm kiếm việc làm sau khi tốt nghiệp.,1
 2,Các bếp ăn được bảo trì và vệ sinh định kỳ.,1
-3,Anh ấy là người rất nhiệt tình và có tinh thần đội nhóm tốt.,1
 1,"Chương trình học không quá dày đặc, giúp sinh viên không quá áp lực.",1
 1,Chương trình học rất phù hợp với mục tiêu và kế hoạch của tôi trong tương lai.,1
 3,Anh ấy có khả năng độc lập và tự tin trong hành động.,1
 3,Anh ấy luôn tôn trọng ý kiến của những người khác.,1
 0,. Thầy/cô hướng dẫn sinh viên cách tìm kiếm và nghiên cứu thông tin,1
-0,Giảng viên luôn tạo được một môi trường học tập năng động.,1
 3,Chị ấy là một người rất sáng tạo và đam mê trong công việc của mình.,1
 2,Có nhiều phòng đọc sách và phòng hội thảo đáp ứng nhu cầu học tập và nghiên cứu,1
 2,Các cơ sở của trường đều được trang bị đầy đủ thiết bị.,1
 1,Chương trình giảng dạy phù hợp với yêu cầu của thị trường lao động.,1
-2,The classrooms are spacious and comfortable.,1
 0,Giảng viên rất tỉ mỉ trong việc đánh giá bài tập của sinh viên.,1
 1,Một số giáo trình cần được cập nhật thường xuyên để phù hợp với ngành nghề hiện tại.,1
 3,Cô ấy có tài chăm sóc người khác và luôn tận tâm với công việc.,1
-1,Tôi cảm thấy chương trình học rất tốt cho việc phát triển sự nghiệp của mình.,1
-0,Giảng viên này đã giúp tôi hiểu rõ hơn về chủ đề.,1
 2,Các thiết bị thiết kế đều được thiết kế để đáp ứng nhu cầu học tập của tương lai.,1
 2,Các nhà ăn của trường có thực đơn rất đa dạng và ngon.,1
 2,The facilities of the university meet most of the students' needs.,1
@@ -1088,13 +979,10 @@ topic,text,sentiment
 1,The curriculum includes opportunities for students to work on independent projects or research.,1
 3,Trưởng nhóm luôn quan tâm đến tiến độ công việc của tôi.,1
 2,"Phòng chờ có máy lạnh, ghế sofa và ti vi giúp sinh viên có nơi để thư giãn trong thời gian đợi",1
-2,Trường có môi trường giáo dục tiên tiến và giúp sinh viên đạt được một tương lai tốt đẹp.,1
 1,Tôi nghĩ rằng chương trình đào tạo có thể có thêm nhiều hoạt động ngoại khóa để giúp sinh viên tăng cường kỹ năng mềm,1
-1,Chương trình học cung cấp các kỹ năng và kiến thức để đáp ứng nhu cầu của xã hội.,1
 1,Chương trình giảng dạy hỗ trợ sinh viên phát triển kỹ năng giao tiếp.,1
 1,Thời gian được sắp xếp hợp lí.,1
 3,Cô giáo rất giỏi tiếng Anh.,1
-0,Giảng viên hướng dẫn sinh viên cách tiếp cận và giải quyết các vấn đề khó khăn.,1
 3,Anh ấy luôn dành thời gian để trau dồi kiến thức và kỹ năng của mình.,1
 3,Họ đã giúp đỡ rất nhiều người trong lớp trong quá trình học tập và làm việc.,1
 2,Trường cần đầu tư nhiều hơn vào việc nâng cao chất lượng giảng dạy và học tập.,1
@@ -1103,11 +991,8 @@ topic,text,sentiment
 2,The classrooms are spacious and well-ventilated.,1
 0,Giảng viên tạo ra môi trường học tập an toàn và động lực.,1
 2,Các khu vực nhân viên trường giao tiếp thân thiện và hỗ trợ tốt cho sinh viên.,1
-0,Tôi cảm thấy hài lòng với phương pháp dạy của giảng viên.,1
 0,Thầy rất nhiệt tình và tâm huyết với công việc giảng dạy.,1
 3,Em nghĩ bạn của mình là người rất thông minh và sáng tạo.,1
-0,Giảng viên tư vấn hướng nghiệp cho sinh viên.,1
-3,Họ học rất chăm chỉ và đạt được nhiều thành tích.,1
 1,Chương trình giảng dạy đi kèm với các dự án và hoạt động giúp sinh viên áp dụng kiến thức vào thực tế.,1
 0,Giảng viên rất nhiệt tình hướng dẫn các bài giảng.,1
 0,"Lớp học có phương pháp giảng dạy linh hoạt, giúp sinh viên tìm ra phương pháp học tập phù hợp nhất.",1
@@ -1123,8 +1008,6 @@ topic,text,sentiment
 2,Các nhân viên bảo vệ trường rất tận tình giải quyết các vấn đề của sinh viên.,1
 2,"The campus security is efficient, ensuring that students feel safe at all times.",1
 1,Giáo trình là cơ sở để phát triển thêm kiến thức và kỹ năng trong ngành nghề.,1
-3,Họ học tập có phương pháp và có thể là người giúp đỡ tốt cho những người khác trong lớp.,1
-0,Thầy sử dụng nhiều phương pháp giảng dạy đa dạng để giúp sinh viên học tập tốt hơn.,1
 1,Giáo trình đòi hỏi nhiều nỗ lực và thời gian hơn so với những trường khác.,1
 3,Bạn ấy rất thông minh và tạo cảm hứng cho tôi.,1
 0,Thầy giảng dễ hiểu và thân thiện với sinh viên.,1
@@ -1136,31 +1019,25 @@ topic,text,sentiment
 0,Giảng viên này đưa ra nhiều ví dụ thực tế để giúp học sinh hiểu rõ hơn về chủ đề.,1
 2,Cơ sở vật chất của các trường cấp dưới đang được nâng cấp để đáp ứng được nhu cầu học tập sinh viên.,1
 2,Truy cập internet tại trường rất nhanh và ổn định.,1
-1,Có nhiều cơ hội tham gia các hoạt động tình nguyện và các hoạt động xã hội hữu ích.,1
 3,Họ là một người rất can đảm và không ngại khó.,1
 1,Một số giáo trình được viết bằng tiếng Việt giúp sinh viên hiểu rõ hơn các khái niệm.,1
 2,The facilities allow students to make the most out of their academic life.,1
 3,Cậu ấy là người có trách nhiệm và làm việc với sự tận tâm cao độ.,1
-0,Tôi cảm thấy giảng viên này có tài giảng bài truyền cảm và thu hút sự chú ý của sinh viên.,1
 0,Cô giáo tạo cảm giác tin tưởng và thoải mái cho sinh viên.,1
 2,Tôi thích sử dụng các khu vực ngoài trời để học tập và nghỉ ngơi.,1
 1,Thiết kế bài kiểm tra đánh giá rất công bằng.,1
 3,Họ rất tâm lý và biết cách giúp đỡ người khác khi cần.,1
 3,Bạn của tôi rất tự tin khi trình bày ý kiến của mình.,1
 3,Chị ấy rất tận tâm và chuyên nghiêp trong công việc.,1
-1,Tôi rất thích số lượng tín chỉ của các môn học trong chương trình đào tạo.,1
 0,Thầy có phản ứng tích cực với câu hỏi của sinh viên.,1
 1,Cần phát triển những chương trình học tập trực tuyến để phù hợp với thời đại công nghệ,1
 2,The campus has a journalism program and facilities.,1
 1,Tôi nghĩ rằng chương trình đào tạo có thể có thêm các môn học về lịch sử và văn hóa để sinh viên hiểu rõ hơn về đất nước và con người Việt Nam,1
-2,The campus has multiple extension outlets for charging devices.,1
 3,Sinh viên này rất thành thạo về kiến thức chuyên ngành của mình.,1
 1,The courses provide relevant case studies.,1
 1,Chương trình học đưa ra nhiều ví dụ về thực tế.,1
 1,Hình thức giảng dạy không phù hợp với một số sinh viên.,1
-3,Họ rất quan tâm đến những người khác và hoàn toàn có thể dựa vào họ khi cần sự giúp đỡ.,1
 1,Có nhiều cơ hội thực tập và tìm hiểu thực tế cho sinh viên.,1
-2,The facilities allow students to make the most out of their academic life.,1
 0,. Giảng viên truyền cảm hứng và động lực cho sinh viên.,1
 2,Thư viện của trường rộng và có nhiều tài liệu cần thiết.,1
 3,Bạn ấy rất tỉ mỉ và cẩn thận trong công việc.,1
@@ -1174,23 +1051,15 @@ topic,text,sentiment
 1,Chương trình học cần đưa ra nhiều cơ hội đào tạo và thực tập để sinh viên có thể phát triển kỹ năng thực tế.,1
 0,Giảng viên diễn đạt bài giảng rất truyền cảm hứng.,1
 3,Cô ấy là một giáo viên rất cởi mở và tiếp thu ý kiến từ sinh viên.,1
-0,"Lớp học có phương pháp giảng dạy linh hoạt, giúp sinh viên tìm ra phương pháp học tập phù hợp nhất.",1
 1,Trường cung cấp cho tôi nhiều cơ hội thực tập và tương tác với các doanh nghiệp.,1
 3,Bạn cùng nhóm rất tận tâm và chịu khó làm việc.,1
 1,Tôi mong muốn chương trình đào tạo có thể cung cấp cho sinh viên nhiều cơ hội trải nghiệm thực tế hơn để giúp sinh viên tăng cường kỹ năng và kinh nghiệm,1
-3,Chị ấy có tâm hồn tràn đầy yêu thương và giúp đỡ người khác một cách tận tình.,1
-2,Các cơ sở của trường được bố trí khá hợp lý và giúp tôi dễ mà đi lại trong trường.,1
 2,"Tôi rất thích những khu vực xanh trong trường, chúng giúp tôi cảm thấy thư giãn và giảm stress.",1
-1,Chương trình đào tạo cần tăng cường giáo dục về khả năng quản lý tài chính,1
 3,Cô ấy có sự khéo léo trong việc xử lý các vấn đề phát sinh.,1
-1,Giáo trình được thiết kế để thúc đẩy tính toán và tư duy logic.,1
 0,Thầy cô này rất nghiêm khắc với các qui tắc quản lý lớp học.,1
 1,Chương trình đào tạo giúp tôi có cơ hội tiếp cận với các giảng viên và nhà nghiên cứu hàng đầu.,1
-3,Anh ấy là một người đam mê và nhiệt huyết với nghề nghiệp của mình.,1
-1,I appreciate the emphasis on research and inquiry in the curriculum.,1
 0,Lớp học được sắp xếp đa dạng và gồm nhiều hoạt động thực hành.,1
 3,Chị ấy có tầm nhìn xa và khả năng lãnh đạo tốt.,1
-0,Giảng viên giúp sinh viên cải thiện kỹ năng thực hành.,1
 0,Giảng viên đã giúp tôi hiểu được tầm quan trọng của môn học này trong cuộc sống của tôi.,1
 2,I am satisfied with the university's facilities.,1
 2,Khu vực ăn uống của trường cũng rất đa dạng và phong phú.,1
@@ -1199,13 +1068,10 @@ topic,text,sentiment
 1,Mức độ phục vụ của thư viện trường cần được cải thiện để đáp ứng được nhu cầu của sinh viên.,1
 2,The parking facilities are convenient and accessible.,1
 2,Trường đại học này đóng góp rất lớn trong việc quảng bá các hoạt động văn hóa và giáo dục tại địa phương.,1
-1,Chương trình học được thiết kế trực quan và dễ hiểu.,1
 3,Anh ấy luôn đóng góp ý kiến của mình vào các cuộc họp nhóm.,1
-2,The university's facilities are up to standard.,1
 3,Cô giáo dạy rất chân thành và nhiệt tình.,1
 2,Trường cần tăng cường thêm thông tin về các cơ hội việc làm cho sinh viên sau khi ra trường.,1
 2,The university has a good range of sports and wellness facilities.,1
-2,Các nhân viên hỗ trợ sinh viên rất nhiệt tình và chăm sóc tận tình.,1
 3,Họ luôn là người nhanh nhẹn và dễ thích nghi với mọi tình huống.,1
 0,Thầy đánh giá một cách khách quan và công bằng.,1
 2,"Phòng học thông thoáng, ánh sáng đầy đủ",1
@@ -1217,36 +1083,28 @@ topic,text,sentiment
 1,Chương trình đào tạo cung cấp cho tôi những kiến thức và kỹ năng cần thiết để trở thành chuyên gia trong ngành học của mình.,1
 0,Thầy cung cấp nhiều tài liệu và tài nguyên hữu ích để giúp chúng tôi học tập tốt hơn.,1
 0,Giáo viên tôn trọng tự do cá nhân và sự khác biệt giữa sinh viên.,1
-0,Thầy cô cung cấp khả năng giải trí và giáo dục cho sinh viên đồng thời.,1
 3,Bạn ấy là người hài hước và dễ thương lắm.,1
 3,Cô giảng viên rất có tinh thần cầu tiến trong nghề giảng dạy.,1
-0,Giảng viên rất thực tế và tích cực hỗ trợ sinh viên đạt thành tích tốt nhất.,1
 1,Các buổi thực hành được tổ chức rất tốt và có nhiều kinh nghiệm thực tế.,1
 2,Kết nối internet tốt ở khắp khuôn viên trường,1
 1,Các bài tập và đề thi đánh giá đúng năng lực của sinh viên.,1
 3,Anh ấy là một người rất chất lượng trong lớp học.,1
 2,"Có các phòng tư vấn, hỗ trợ cho sinh viên có thể tìm kiếm thông tin và giải đáp thắc mắc.",1
 2,Các phòng học được bố trí phù hợp với số lượng sinh viên học tập.,1
-3,Họ luôn có thể giải đáp thắc mắc của sinh viên.,1
 0,Giảng viên này rất dễ mến và có thể giải thích một cách đơn giản dễ hiểu cho tất cả học sinh.,1
-1,Chương trình học cần đưa ra phương pháp giảng dạy mới để nâng cao hiệu quả học tập.,1
-1,Chương trình đào tạo phù hợp với thị trường lao động hiện nay.,1
 2,The campus is always beautifully decorated during holidays.,1
 2,Trường có nhiều điểm truy cập internet để các bạn đều sử dụng được internet.,1
 2,Các dịch vụ khác nhau trong trường rất tốt và hữu ích cho sinh viên.,1
-0,". Thầy/cô cung cấp nhiều tài liệu, tài nguyên hữu ích cho sinh viên",1
 2,Tôi thấy không gian học tập của trường rất yên tĩnh và thuận tiện cho việc học tập.,1
 2,Các phòng học được bố trí đầy đủ tiện nghi cho sinh viên.,1
 2,The university provides workshops for resume building and job searching.,1
 1,Chương trình giảng dạy đáp ứng được các tiêu chuẩn của ngành nghề.,1
 3,Nàng luôn đạt được những thành tích cao trong học tập.,1
 2,The campus has a gaming room for students to relax and have fun.,1
-2,Tôi thấy trường có nhiều phòng học tuyệt vời để học tập.,1
 0,Tôi thấy giảng viên của tôi rất nhiệt tình và tận tâm trong việc giảng dạy môn học.,1
 3,Anh ấy là một người học giỏi và luôn đạt được điểm số cao nhất.,1
 2,The campus has multiple parking options for students with cars.,1
 1,Tôi mong muốn chương trình đào tạo có một môi trường học tập tốt hơn với các tiện nghi và dịch vụ tốt hơn,1
-2,Tôi thấy trường của mình rất đẹp và gần gũi với thiên nhiên.,1
 2,The facilities enable students to have a well-rounded university experience.,1
 3,Chị ấy luôn giữ bình tĩnh và kiên nhẫn trong tình huống khó khăn.,1
 0,nói tiếng anh lưu loát .,2
