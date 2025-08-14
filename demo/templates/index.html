@@ -214,7 +214,7 @@
           </div>
         `;
 
-            // DÒNG NÀY COMMENT LẠI NÈ
+            // Hiển thị phần explain cho đoạn văn bản
             const explainRes = await fetch("/explain-text", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
@@ -541,7 +541,7 @@
 
               const sentiment = data.stats[topic].max_sentiment;
               // await Promise.all([
-              //   // loadExplainLIME(topic, sentiment),
+              //   loadExplainLIME(topic, sentiment),
               //   loadExplainGemini(topic, sentiment),
               // ]);
 
